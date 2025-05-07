@@ -1,0 +1,16 @@
+{{>layouts/principal}}
+
+<div class="container">
+    <h2>Login</h2>
+    <form method="POST" action="/usuario/login">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+</div>

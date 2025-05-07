@@ -1,0 +1,16 @@
+{{>layouts/principal}}
+
+<div class="container">
+    <h2>Bem-vindo ao Empregai!</h2>
+    <p>Escolha uma das opções abaixo:</p>
+
+    {{#if usuario}}
+        {{#if (eq usuario.tipo 1)}}
+            <a href="/candidato/feed" class="btn btn-primary">Ver vagas</a>
+        {{else}}
+            <a href="/empresa/feed" class="btn btn-primary">Ver candidatos</a>
+        {{/if}}
+    {{else}}
+        <a href="/usuario/login" class="btn btn-primary">Faça login para acessar</a>
+    {{/if}}
+</div>
