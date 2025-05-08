@@ -17,14 +17,14 @@ class UsuarioController {
     });
   };
 
-  registrar = async (req, res) => {
+  cadastrar = async (req, res) => {
     try {
       const { nome, email, senha, tipo } = req.body;
       const novoUsuario = await Usuario.create({ nome, email, senha, tipo });
       res.redirect("/usuario/login");
     } catch (erro) {
-      console.error("Erro ao registrar:", erro);
-      res.status(500).send("Erro ao registrar.");
+      console.error("Erro ao cadastrar:", erro);
+      res.status(500).send("Erro ao cadastrar.");
     }
   };
 }
