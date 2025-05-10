@@ -3,7 +3,7 @@
     <p>Escolha uma das opções abaixo:</p>
 
     {{#if usuario}}
-        {{#if (eq usuario.tipo 1)}}
+        {{#if candidato}}
             <a href="/candidato/feed" class="btn btn-primary">Ver vagas</a>
         {{else}}
             <a href="/empresa/feed" class="btn btn-primary">Ver candidatos</a>

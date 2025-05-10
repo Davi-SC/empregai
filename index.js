@@ -57,7 +57,9 @@ app.use(express.static(path.join(__dirname, "public")));
 // ROTAS
 ////////////////////
 app.get("/", (req, res) => {
-  res.render("home/home");
+  res.render("home/home", {
+    candidato: req.user?.tipo === "candidato",
+  });
 });
 
 import usuario from "./routes/usuario.js";
