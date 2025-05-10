@@ -15,11 +15,57 @@
         </div>
         <div class="form-group">
             <label for="tipo">Tipo de usuário</label>
-            <select class="form-control" id="tipo" name="tipo">
-                <option value="1">Candidato</option>
-                <option value="2">Empresa</option>
+            <select class="form-control" id="tipo" name="tipo" required onchange="mostrarCamposExtras()">
+                <option value="">Selecione</option>
+                <option value="candidato">Candidato</option>
+                <option value="empresa">Empresa</option>
             </select>
+        </div>
+        <div id="camposCandidato" style="display: none;">
+            <div class="form-group">
+                <label for="areaAtuacao">Área de Atuação</label>
+                <input type="text" class="form-control" name="areaAtuacao">
+            </div>
+            <div class="form-group">
+                <label for="experiencia">Experiência</label>
+                <textarea class="form-control" name="experiencia"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="habilidades">Habilidades</label>
+                <textarea class="form-control" name="habilidades"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="localizacao">Localização</label>
+                <input type="text" class="form-control" name="localizacao">
+            </div>
+        </div>
+
+        <div id="camposEmpresa" style="display: none;">
+            <div class="form-group">
+                <label for="nomeFantasia">Nome Fantasia</label>
+                <input type="text" class="form-control" name="nomeFantasia">
+            </div>
+            <div class="form-group">
+                <label for="cnpj">CNPJ</label>
+                <input type="text" class="form-control" name="cnpj">
+            </div>
+            <div class="form-group">
+                <label for="setor">Setor</label>
+                <input type="text" class="form-control" name="setor">
+            </div>
+            <div class="form-group">
+                <label for="localizacaoEmpresa">Localização</label>
+                <input type="text" class="form-control" name="localizacaoEmpresa">
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
+
+<script>
+    function mostrarCamposExtras() {
+        const tipo = document.getElementById("tipo").value;
+        document.getElementById("camposCandidato").style.display = tipo === "candidato" ? "block" : "none";
+        document.getElementById("camposEmpresa").style.display = tipo === "empresa" ? "block" : "none";
+    }
+</script>
