@@ -1,14 +1,11 @@
 import banco from "../config/banco.js";
+import Empresa from "./Empresa.js";
 
 const Vaga = banco.sequelize.define("vagas", {
   id: {
     type: banco.Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-  },
-  empresaId: {
-    type: banco.Sequelize.INTEGER,
-    allowNull: false,
   },
   titulo: banco.Sequelize.STRING(150),
   descricao: banco.Sequelize.TEXT,
@@ -18,5 +15,12 @@ const Vaga = banco.sequelize.define("vagas", {
   localizacao: banco.Sequelize.STRING(100),
 });
 
-Vaga.sync();
+Vaga.belongsTo(Empresa, {
+  foreignKey: 'empresa_id',
+  constraint: true,
+  onDelete: 'CASCADE',
+  as: 'empresa',
+})
+
+// Vaga.sync();
 export default Vaga;
