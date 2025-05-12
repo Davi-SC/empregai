@@ -8,7 +8,7 @@
                 </button>
             </div>
 
-            <form action="/candidato/editar" method="post">
+            <form action="/empresa/editar" method="post">
                 <div class="row">
                     <div class="col-md-2 mb-3">
                         <label for="id" class="form-label">ID</label>
@@ -16,8 +16,7 @@
                             <span class="input-group-text">
                                 <i class="bi bi-hash"></i>
                             </span>
-                            <input type="number" class="form-control bg-light" name="id" id="id" value="{{candidato.id}}"
-                                readonly>
+                            <input type="number" class="form-control bg-light" name="id" id="id" value="{{empresa.id}}" readonly>
                         </div>
                     </div>
 
@@ -44,32 +43,22 @@
                     </div>
 
                     <div class="col-md-4 mb-3">
-                        <label for="area_atuacao" class="form-label">Área de atuação</label>
+                        <label for="cnpj" class="form-label">CNPJ</label>
                         <div class="input-group">
                             <span class="input-group-text">
                                 <i class="bi bi-card-text"></i>
                             </span>
-                            <input type="text" class="form-control" name="area_atuacao" id="area_atuacao" value="{{candidato.area_atuacao}}" required >
+                            <input type="text" class="form-control bg-light" name="cnpj" id="cnpj" value="{{empresa.cnpj}}" required >
                         </div>
                     </div>
 
                     <div class="col-md-4 mb-3">
-                        <label for="experiencia" class="form-label">Experiência</label>
+                        <label for="setor" class="form-label">Setor</label>
                         <div class="input-group">
                             <span class="input-group-text">
                                 <i class="bi bi-person-workspace"></i>
                             </span>
-                            <input type="text" class="form-control" name="experiencia" id="experiencia" value="{{candidato.experiencia}}" required>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 mb-3">
-                        <label for="habilidades" class="form-label">Habilidades</label>
-                        <div class="input-group">
-                            <span class="input-group-text">
-                                <i class="bi bi-hammer"></i>
-                            </span>
-                            <input type="text" class="form-control" name="habilidades" id="habilidades" value="{{candidato.habilidades}}" required>
+                            <input type="text" class="form-control" name="setor" id="setor" value="{{empresa.setor}}" required>
                         </div>
                     </div>
 
@@ -79,7 +68,7 @@
                             <span class="input-group-text">
                                 <i class="bi bi-geo-alt-fill"></i>
                             </span>
-                            <input type="text" class="form-control" name="localizacao" id="localizacao" value="{{candidato.localizacao}}" required>
+                            <input type="text" class="form-control" name="localizacao" id="localizacao" value="{{empresa.localizacao}}" required>
                         </div>
                     </div>
                 </div>
