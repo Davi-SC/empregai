@@ -1,71 +1,95 @@
-<div class="container">
-    <h2>Cadastro</h2>
-    <form method="POST" action="/usuario/cadastrar">
-        <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" class="form-control" id="nome" name="nome" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="senha">Senha</label>
-            <input type="password" class="form-control" id="senha" name="senha" required>
-        </div>
-        <div class="form-group">
-            <label for="tipo">Tipo de usuário</label>
-            <select class="form-control" id="tipo" name="tipo" required onchange="mostrarCamposExtras()">
-                <option value="">Selecione</option>
-                <option value="candidato">Candidato</option>
-                <option value="empresa">Empresa</option>
-            </select>
-        </div>
-        <div id="camposCandidato" style="display: none;">
-            <div class="form-group">
-                <label for="areaAtuacao">Área de Atuação</label>
-                <input type="text" class="form-control" name="areaAtuacao">
-            </div>
-            <div class="form-group">
-                <label for="experiencia">Experiência</label>
-                <textarea class="form-control" name="experiencia"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="habilidades">Habilidades</label>
-                <textarea class="form-control" name="habilidades"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="localizacao">Localização</label>
-                <input type="text" class="form-control" name="localizacao">
-            </div>
-        </div>
+<div class="container d-flex flex-column align-items-center justify-content-center min-vh-100 bg-light">
 
-        <div id="camposEmpresa" style="display: none;">
-            <div class="form-group">
-                <label for="nomeFantasia">Nome Fantasia</label>
-                <input type="text" class="form-control" name="nomeFantasia">
-            </div>
-            <div class="form-group">
-                <label for="cnpj">CNPJ</label>
-                <input type="text" class="form-control" name="cnpj">
-            </div>
-            <div class="form-group">
-                <label for="setor">Setor</label>
-                <input type="text" class="form-control" name="setor">
-            </div>
-            <div class="form-group">
-                <label for="localizacaoEmpresa">Localização</label>
-                <input type="text" class="form-control" name="localizacaoEmpresa">
-            </div>
+  <!-- Botões de switch -->
+  <div class="btn-group mb-4" role="group" aria-label="Tipo de cadastro">
+    <button type="button" class="btn btn-primary" id="btnPessoa">Pessoa</button>
+    <button type="button" class="btn btn-outline-primary" id="btnEmpresa">Empresa</button>
+  </div>
+
+  <!-- Card de formulário -->
+  <div class="card shadow p-4" style="width: 100%; max-width: 450px;">
+    <!-- Formulário Pessoa -->
+    <form id="formPessoa">
+      <div class="mb-3">
+        <label for="nomePessoa" class="form-label">Nome Completo</label>
+        <input type="text" class="form-control" id="nomePessoa" name="nome">
+      </div>
+      <div class="mb-3">
+        <label for="cpfPessoa" class="form-label">CPF</label>
+        <input type="text" class="form-control" id="cpfPessoa" name="cpf">
+      </div>
+      <div class="mb-3">
+        <label for="emailPessoa" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="emailPessoa" name="email">
+      </div>
+      <div class="mb-3 position-relative">
+        <label for="senhaPessoa" class="form-label">Senha</label>
+        <div class="input-group">
+          <input type="password" class="form-control" id="senhaPessoa" name="senha">
+          <button type="button" class="btn btn-link position-absolute end-0 top-0 mt-2 me-2 p-0 text-decoration-none" style="font-size: 0.9rem;" onclick="togglePassword('senhaPessoa')">Exibir</button>
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
     </form>
+
+    <!-- Formulário Empresa -->
+    <form id="formEmpresa" class="d-none">
+      <div class="mb-3">
+        <label for="nomeEmpresa" class="form-label">Nome Empresa</label>
+        <input type="text" class="form-control" id="nomeEmpresa" name="nome">
+      </div>
+      <div class="mb-3">
+        <label for="cnpjEmpresa" class="form-label">CNPJ</label>
+        <input type="text" class="form-control" id="cnpjEmpresa" name="cnpj">
+      </div>
+      <div class="mb-3">
+        <label for="emailEmpresa" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="emailEmpresa" name="email">
+      </div>
+      <div class="mb-3 position-relative">
+        <label for="senhaEmpresa" class="form-label">Senha</label>
+        <div class="input-group">
+          <input type="password" class="form-control" id="senhaEmpresa" name="senha">
+          <button type="button" class="btn btn-link position-absolute end-0 top-0 mt-2 me-2 p-0 text-decoration-none" style="font-size: 0.9rem;" onclick="togglePassword('senhaEmpresa')">Exibir</button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+    </form>
+
+    <!-- Link para login -->
+    <div class="text-center mt-3">
+      <small>Já faz parte do Empregai? <a href="./login">Entrar</a></small>
+    </div>
+  </div>
 </div>
 
+<!-- Script para alternar formulários -->
 <script>
-    function mostrarCamposExtras() {
-        const tipo = document.getElementById("tipo").value;
-        document.getElementById("camposCandidato").style.display = tipo === "candidato" ? "block" : "none";
-        document.getElementById("camposEmpresa").style.display = tipo === "empresa" ? "block" : "none";
-    }
+  const btnPessoa = document.getElementById('btnPessoa');
+  const btnEmpresa = document.getElementById('btnEmpresa');
+  const formPessoa = document.getElementById('formPessoa');
+  const formEmpresa = document.getElementById('formEmpresa');
+
+  btnPessoa.addEventListener('click', () => {
+    formPessoa.classList.remove('d-none');
+    formEmpresa.classList.add('d-none');
+    btnPessoa.classList.add('btn-primary');
+    btnPessoa.classList.remove('btn-outline-primary');
+    btnEmpresa.classList.add('btn-outline-primary');
+    btnEmpresa.classList.remove('btn-primary');
+  });
+
+  btnEmpresa.addEventListener('click', () => {
+    formPessoa.classList.add('d-none');
+    formEmpresa.classList.remove('d-none');
+    btnEmpresa.classList.add('btn-primary');
+    btnEmpresa.classList.remove('btn-outline-primary');
+    btnPessoa.classList.add('btn-outline-primary');
+    btnPessoa.classList.remove('btn-primary');
+  });
+
+  function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    input.type = input.type === 'password' ? 'text' : 'password';
+  }
 </script>
