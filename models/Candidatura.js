@@ -8,7 +8,7 @@ const Candidatura = banco.sequelize.define("candidaturas", {
     primaryKey: true,
     autoIncrement: true,
   },
-  dataCandidatura: {
+  data_candidatura: {
     type: banco.Sequelize.DATE,
     defaultValue: banco.Sequelize.NOW,
   },

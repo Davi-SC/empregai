@@ -7,7 +7,7 @@ const Empresa = banco.sequelize.define("empresas", {
     primaryKey: true,
     autoIncrement: true,
   },
-  nomeFantasia: banco.Sequelize.STRING(150),
+  nome_fantasia: banco.Sequelize.STRING(150),
   cnpj: banco.Sequelize.STRING(20),
   setor: banco.Sequelize.STRING(100),
   localizacao: banco.Sequelize.STRING(100),
