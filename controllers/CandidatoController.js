@@ -1,6 +1,7 @@
-import { where } from "sequelize";
+import { QueryTypes } from "sequelize";
 import Candidato from "../models/Candidato.js";
 import Usuario from "../models/Usuario.js";
+import banco from "../config/banco.js"
 
 class CandidatoController {
   criarPerfil = async (req, res) => {
@@ -19,6 +20,16 @@ class CandidatoController {
     const candidatos = await Candidato.findAll();
     res.render("empresa/feed-candidatos", { candidatos });
   };
+
+  verPerfil = async (req, res) => {
+    
+    const candidato = await banco.sequelize.query('SELECT u.nome, c.* FROM usuarios u JOIN candidatos c ON u.id = c.usuario_id WHERE u.id = ?', {
+      replacements: [req.user.id],
+      type: QueryTypes.SELECT
+    })
+
+    res.render("candidato/perfil", {candidato: candidato[0]})
+  }
 
   editar = async (req, res) => {
 

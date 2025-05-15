@@ -1,0 +1,43 @@
+<div class="container py-4">
+  <div class="card shadow-sm mb-4">
+    <div class="profile-banner">
+      <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg" class="profile-header-img" alt="Company Banner">
+    </div>
+    <div class="profile-content">
+      <div class="rounded-circle bg-primary profile-avatar">
+        <!-- adicionar foto da emprsa -->
+      </div>
+      <div class="profile-info">
+        <h2 class="mb-1">{{empresa.nome}}</h2>
+        <p class="text-muted mb-1">CNPJ: {{empresa.cnpj}}</p>
+        <p class="text-muted mb-3">{{empresa.localizacao}}</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="#" class="btn btn-primary">Abrir vagas</a>
+          <a href="#" class="btn btn-primary">Aplicações</a>
+          <a href="#" class="btn btn-primary">Buscar candidatos</a>
+          <a href="/empresa/editar" class="btn btn-primary">Editar perfil</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h3 class="mb-4">Sugestões para você</h3>
+      <div class="suggestions-container d-flex flex-wrap gap-4">
+        <div class="suggestion-card">
+          <i class="bi bi-building"></i>
+          <button class="btn btn-outline-primary suggestion-btn">Adicione um setor</button>
+        </div>
+        <div class="suggestion-card">
+          <i class="bi bi-journal"></i>
+          <button class="btn btn-outline-primary suggestion-btn">Adicione um resumo</button>
+        </div>
+        <div class="suggestion-card">
+          <i class="bi bi-file-plus"></i>
+          <button class="btn btn-outline-primary suggestion-btn">Adicione uma postagem</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
