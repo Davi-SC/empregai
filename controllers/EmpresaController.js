@@ -32,15 +32,12 @@ class EmpresaController {
 
   editar = async (req, res) => {
 
-    const usuario = await Usuario.findByPk(req.user.id)
-
-    const empresa = await Empresa.findOne({
-      where:{
-        usuario_id: req.user.id
-      }
+    const empresa = await banco.sequelize.query('SELECT u.nome, e.* FROM usuarios u JOIN empresas e ON u.id = e.usuario_id WHERE u.id = ?', {
+      replacements: [req.user.id],
+      type: QueryTypes.SELECT
     })
 
-    res.render("empresa/editar", {usuario: usuario, empresa: empresa})
+    res.render("empresa/editar", {empresa: empresa[0]})
   };
 
   salvar = async (req, res) => {
@@ -52,8 +49,10 @@ class EmpresaController {
       where:{
         id: req.user.id
       }
-    }).then(() => {
-      Empresa.update({
+    }).then(async () => {
+      
+      await Empresa.update({
+        nome_fantasia: req.body.nome_fantasia,
         cnpj: req.body.cnpj,
         setor: req.body.setor,
         localizacao: req.body.localizacao
