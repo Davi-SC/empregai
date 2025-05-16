@@ -12,11 +12,51 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
-    <head><a class="navbar-brand" href="/"><div class="logo">EMPREG<span>AI</span></div></head></a>
+<body class="bg-light">
+    {{> (lookup . 'header')}}
     <!--{{>menu}}-->
     {{>msg}}
     {{{body}}}
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Logo / Nome da Empresa -->
+                <div class="col-md-4 mb-4">
+                    <h5>Empregai</h5>
+                    <p>Conectando talentos com oportunidades.</p>
+                </div>
+
+                <!-- Links úteis -->
+                <div class="col-md-4 mb-4">
+                    <h5>Links úteis</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/sobre" class="text-light text-decoration-none">Sobre nós</a></li>
+                        <li><a href="/vagas" class="text-light text-decoration-none">Vagas</a></li>
+                        <li><a href="/contato" class="text-light text-decoration-none">Contato</a></li>
+                        <li><a href="/politica" class="text-light text-decoration-none">Política de privacidade</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contato / Redes -->
+                <div class="col-md-4 mb-4">
+                    <h5>Contato</h5>
+                    <p>Email: contato@empregai.com</p>
+                    <p>Telefone: (11) 99999-9999</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <small>&copy; 2025 Empregai. Todos os direitos reservados.</small>
+            </div>
+        </div>
+    </footer>
+
+
 
     <script src="/js/bootstrap.bundle.js"></script>
     <script src="/js/script.js"></script>

@@ -1,0 +1,125 @@
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .job-card {
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .job-card:hover {
+      transform: scale(1.01);
+    }
+
+    .tag {
+      background-color: #e9ecef;
+      border-radius: 15px;
+      padding: 4px 10px;
+      font-size: 0.85rem;
+      margin-right: 5px;
+    }
+
+    .btn-view {
+      background-color: #0d6efd;
+      color: white;
+      border-radius: 8px;
+    }
+
+    .btn-view:hover {
+      background-color: #0b5ed7;
+    }
+
+    .filter-bar select {
+      border-radius: 8px;
+    }
+  </style>
+
+  <!-- Filtro e busca -->
+  <div class="container mb-4">
+    <div class="row align-items-end">
+      <div class="col-md-4 mb-3">
+        <label for="search" class="form-label">Pesquisar vaga, empresa...</label>
+        <input type="text" id="search" class="form-control" placeholder="Ex: Desenvolvedor">
+      </div>
+      <div class="col-md-2 mb-3 filter-bar">
+        <label class="form-label">Área</label>
+        <select class="form-select">
+          <option selected>Todas</option>
+          <option>Tecnologia</option>
+          <option>Administração</option>
+        </select>
+      </div>
+      <div class="col-md-2 mb-3 filter-bar">
+        <label class="form-label">Tipo</label>
+        <select class="form-select">
+          <option selected>Todos</option>
+          <option>CLT</option>
+          <option>Freelancer</option>
+        </select>
+      </div>
+      <div class="col-md-2 mb-3 filter-bar">
+        <label class="form-label">Cidade</label>
+        <select class="form-select">
+          <option selected>Todas</option>
+          <option>São Paulo</option>
+          <option>Remoto</option>
+        </select>
+      </div>
+      <div class="col-md-2 mb-3">
+        <button class="btn btn-primary w-100">Filtrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de vagas -->
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Vaga 1 -->
+      <div class="col-md-6">
+        <div class="p-4 bg-white job-card">
+          <h5>Desenvolvedor Front-end</h5>
+          <p class="mb-1 text-muted">TechCorp - São Paulo</p>
+          <div class="mb-2">
+            <span class="tag">Tecnologia</span>
+            <span class="tag">Remoto</span>
+          </div>
+          <a href="#" class="btn btn-view">Ver mais</a>
+        </div>
+      </div>
+
+      <!-- Vaga 2 -->
+      <div class="col-md-6">
+        <div class="p-4 bg-white job-card">
+          <h5>Assistente Administrativo</h5>
+          <p class="mb-1 text-muted">OfficePro - Belo Horizonte</p>
+          <div class="mb-2">
+            <span class="tag">Administração</span>
+            <span class="tag">Presencial</span>
+          </div>
+          <a href="#" class="btn btn-view">Ver mais</a>
+        </div>
+      </div>
+
+      <!-- Vaga 3 -->
+      <div class="col-md-6">
+        <div class="p-4 bg-white job-card">
+          <h5>Analista de Dados</h5>
+          <p class="mb-1 text-muted">DataWise - Remoto</p>
+          <div class="mb-2">
+            <span class="tag">Tecnologia</span>
+            <span class="tag">Home Office</span>
+          </div>
+          <a href="#" class="btn btn-view">Ver mais</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (opcional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

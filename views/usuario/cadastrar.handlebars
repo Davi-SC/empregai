@@ -2,38 +2,41 @@
 
   <!-- Botões de switch -->
   <div class="btn-group mb-4" role="group" aria-label="Tipo de cadastro">
-    <button type="button" class="btn btn-primary" id="btnPessoa">Pessoa</button>
+    <button type="button" class="btn btn-primary" id="btnCandidato">Candidato</button>
     <button type="button" class="btn btn-outline-primary" id="btnEmpresa">Empresa</button>
   </div>
 
   <!-- Card de formulário -->
   <div class="card shadow p-4" style="width: 100%; max-width: 450px;">
-    <!-- Formulário Pessoa -->
-    <form id="formPessoa">
+    <!-- Formulário Candidato -->
+    <form method="post" action="/usuario/cadastrar" id="formCandidato">
+      <input type="hidden" id="tipo" name="tipo" value="candidato">
       <div class="mb-3">
-        <label for="nomePessoa" class="form-label">Nome Completo</label>
-        <input type="text" class="form-control" id="nomePessoa" name="nome">
+        <label for="nomeCandidato" class="form-label">Nome Completo</label>
+        <input type="text" class="form-control" id="nomeCandidato" name="nome">
       </div>
       <div class="mb-3">
-        <label for="cpfPessoa" class="form-label">CPF</label>
-        <input type="text" class="form-control" id="cpfPessoa" name="cpf">
+        <label for="cpfCandidato" class="form-label">CPF</label>
+        <input type="text" class="form-control" id="cpfCandidato" name="cpf">
       </div>
       <div class="mb-3">
-        <label for="emailPessoa" class="form-label">E-mail</label>
-        <input type="email" class="form-control" id="emailPessoa" name="email">
+        <label for="emailCandidato" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="emailCandidato" name="email">
       </div>
       <div class="mb-3 position-relative">
-        <label for="senhaPessoa" class="form-label">Senha</label>
+        <label for="senhaCandidato" class="form-label">Senha</label>
         <div class="input-group">
-          <input type="password" class="form-control" id="senhaPessoa" name="senha">
-          <button type="button" class="btn btn-link position-absolute end-0 top-0 mt-2 me-2 p-0 text-decoration-none" style="font-size: 0.9rem;" onclick="togglePassword('senhaPessoa')">Exibir</button>
+          <input type="password" class="form-control" id="senhaCandidato" name="senha">
+          <button type="button" class="btn btn-link position-absolute end-0 top-0 mt-2 me-2 p-0 text-decoration-none"
+            style="font-size: 0.9rem;" onclick="togglePassword('senhaCandidato')">Exibir</button>
         </div>
       </div>
       <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
     </form>
 
     <!-- Formulário Empresa -->
-    <form id="formEmpresa" class="d-none">
+    <form method="post" action="/usuario/cadastrar" id="formEmpresa" class="d-none">
+      <input type="hidden" id="tipo" name="tipo" value="empresa">
       <div class="mb-3">
         <label for="nomeEmpresa" class="form-label">Nome Empresa</label>
         <input type="text" class="form-control" id="nomeEmpresa" name="nome">
@@ -50,7 +53,8 @@
         <label for="senhaEmpresa" class="form-label">Senha</label>
         <div class="input-group">
           <input type="password" class="form-control" id="senhaEmpresa" name="senha">
-          <button type="button" class="btn btn-link position-absolute end-0 top-0 mt-2 me-2 p-0 text-decoration-none" style="font-size: 0.9rem;" onclick="togglePassword('senhaEmpresa')">Exibir</button>
+          <button type="button" class="btn btn-link position-absolute end-0 top-0 mt-2 me-2 p-0 text-decoration-none"
+            style="font-size: 0.9rem;" onclick="togglePassword('senhaEmpresa')">Exibir</button>
         </div>
       </div>
       <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
@@ -65,27 +69,27 @@
 
 <!-- Script para alternar formulários -->
 <script>
-  const btnPessoa = document.getElementById('btnPessoa');
+  const btnCandidato = document.getElementById('btnCandidato');
   const btnEmpresa = document.getElementById('btnEmpresa');
-  const formPessoa = document.getElementById('formPessoa');
+  const formCandidato = document.getElementById('formCandidato');
   const formEmpresa = document.getElementById('formEmpresa');
 
-  btnPessoa.addEventListener('click', () => {
-    formPessoa.classList.remove('d-none');
+  btnCandidato.addEventListener('click', () => {
+    formCandidato.classList.remove('d-none');
     formEmpresa.classList.add('d-none');
-    btnPessoa.classList.add('btn-primary');
-    btnPessoa.classList.remove('btn-outline-primary');
+    btnCandidato.classList.add('btn-primary');
+    btnCandidato.classList.remove('btn-outline-primary');
     btnEmpresa.classList.add('btn-outline-primary');
     btnEmpresa.classList.remove('btn-primary');
   });
 
   btnEmpresa.addEventListener('click', () => {
-    formPessoa.classList.add('d-none');
+    formCandidato.classList.add('d-none');
     formEmpresa.classList.remove('d-none');
     btnEmpresa.classList.add('btn-primary');
     btnEmpresa.classList.remove('btn-outline-primary');
-    btnPessoa.classList.add('btn-outline-primary');
-    btnPessoa.classList.remove('btn-primary');
+    btnCandidato.classList.add('btn-outline-primary');
+    btnCandidato.classList.remove('btn-primary');
   });
 
   function togglePassword(inputId) {
