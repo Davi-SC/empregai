@@ -1,7 +1,8 @@
 import { QueryTypes } from "sequelize";
 import Candidato from "../models/Candidato.js";
 import Usuario from "../models/Usuario.js";
-import banco from "../config/banco.js"
+import Vaga from "../models/Vaga.js";
+import banco from "../config/banco.js";
 
 class CandidatoController {
   criarPerfil = async (req, res) => {
@@ -16,9 +17,9 @@ class CandidatoController {
     }
   };
 
-  verTodos = async (req, res) => {
-    const candidatos = await Candidato.findAll();
-    res.render("empresa/feed-candidatos", { candidatos });
+  verVagas = async (req, res) => {
+    const vagas = await Vaga.findAll();
+    res.render("candidato/feed", {vagas: vagas});
   };
 
   verPerfil = async (req, res) => {

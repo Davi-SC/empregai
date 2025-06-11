@@ -1,0 +1,14 @@
+{{#if vagas.length}}
+    <div>
+        {{#each vagas}}
+            <div>
+                <h3>{{titulo}}</h3>
+                <span>{{descricao}}</span>
+            </div>
+        {{/each}}
+    </div>
+{{else}}
+    <div>
+        <h3>Nenhuma vaga disponível</h3>
+    </div>
+{{/if}}
