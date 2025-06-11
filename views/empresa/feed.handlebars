@@ -1,0 +1,17 @@
+{{#if candidatos.length}}
+    <div>
+        {{#each candidatos}}
+            <a href="candidato/visualizar-perfil/{{id}}">
+                <h3>{{nome}}</h3>
+                <p>{{area_atuacao}}</p>
+                <span>{{experiencia}}</span>
+                <p>{{habilidades}}</p>
+                <p>{{localizacao}}</p>
+            </a>
+        {{/each}}
+    </div>
+{{else}}
+    <div>
+        <h3>Nenhum candidato disponível</h3>
+    </div>
+{{/if}}

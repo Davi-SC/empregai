@@ -28,5 +28,5 @@ Candidatura.belongsTo(Vaga, {
   as: 'vaga',
 })
 
-// Candidatura.sync();
+//Candidatura.sync();
 export default Candidatura;

@@ -22,5 +22,5 @@ Vaga.belongsTo(Empresa, {
   as: 'empresa',
 })
 
-// Vaga.sync();
+ //Vaga.sync();
 export default Vaga;

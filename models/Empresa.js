@@ -8,7 +8,13 @@ const Empresa = banco.sequelize.define("empresas", {
     autoIncrement: true,
   },
   nome_fantasia: banco.Sequelize.STRING(150),
-  cnpj: banco.Sequelize.STRING(20),
+  cnpj: {
+    type: banco.Sequelize.STRING(20),
+    allowNull: false, // Não permite nulo
+    validate: {
+      notEmpty: true, // Não permite string vazia
+    }
+  },
   setor: banco.Sequelize.STRING(100),
   localizacao: banco.Sequelize.STRING(100),
 });
@@ -20,5 +26,5 @@ Empresa.belongsTo(Usuario, {
   as: 'usuario',
 })
 
-// Empresa.sync();
+//Empresa.sync();
 export default Empresa;
