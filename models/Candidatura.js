@@ -1,4 +1,6 @@
 import banco from "../config/banco.js";
+import Candidato from "./Candidato.js";
+import Vaga from "./Vaga.js";
 
 const Candidatura = banco.sequelize.define("candidaturas", {
   id: {
@@ -6,19 +8,25 @@ const Candidatura = banco.sequelize.define("candidaturas", {
     primaryKey: true,
     autoIncrement: true,
   },
-  candidatoId: {
-    type: banco.Sequelize.INTEGER,
-    allowNull: false,
-  },
-  vagaId: {
-    type: banco.Sequelize.INTEGER,
-    allowNull: false,
-  },
-  dataCandidatura: {
+  data_candidatura: {
     type: banco.Sequelize.DATE,
     defaultValue: banco.Sequelize.NOW,
   },
 });
 
-Candidatura.sync();
+Candidatura.belongsTo(Candidato, {
+  foreignKey: 'candidato_id',
+  constraint: true,
+  onDelete: 'CASCADE',
+  as: 'candidato',
+})
+
+Candidatura.belongsTo(Vaga, {
+  foreignKey: 'vaga_id',
+  constraint: 'true',
+  onDelete: 'CASCADE',
+  as: 'vaga',
+})
+
+// Candidatura.sync();
 export default Candidatura;

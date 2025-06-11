@@ -7,19 +7,19 @@ function logado(req, res, next) {
 }
 
 function apenasCandidato(req, res, next) {
-  if (req.isAuthenticated() && req.user.tipo === 1) {
+  if (req.isAuthenticated() && req.user.tipo === "candidato") {
     return next();
   }
   req.flash("error_msg", "Apenas candidatos têm acesso a esta área.");
-  res.redirect("/usuario/login");
+  res.redirect("/");
 }
 
 function apenasEmpresa(req, res, next) {
-  if (req.isAuthenticated() && req.user.tipo === 2) {
+  if (req.isAuthenticated() && req.user.tipo === "empresa") {
     return next();
   }
   req.flash("error_msg", "Apenas empresas têm acesso a esta área.");
-  res.redirect("/usuario/login");
+  res.redirect("/");
 }
 
 export { logado, apenasCandidato, apenasEmpresa };

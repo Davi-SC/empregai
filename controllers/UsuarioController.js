@@ -45,19 +45,11 @@ class UsuarioController {
 
       if (usuario.tipo === "candidato") {
         await Candidato.create({
-          usuarioId: usuario.id,
-          areaAtuacao: req.body.areaAtuacao || null,
-          experiencia: req.body.experiencia || null,
-          habilidades: req.body.habilidades || null,
-          localizacao: req.body.localizacao || null,
+          usuario_id: usuario.id
         });
       } else if (usuario.tipo === "empresa") {
         await Empresa.create({
-          usuarioId: usuario.id,
-          nomeFantasia: req.body.nomeFantasia || null,
-          cnpj: req.body.cnpj || null,
-          setor: req.body.setor || null,
-          localizacao: req.body.localizacaoEmpresa || null,
+          usuario_id: usuario.id
         });
       }
 
