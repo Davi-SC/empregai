@@ -5,20 +5,24 @@ import { QueryTypes } from "sequelize";
 
 class EmpresaController {
   criarPerfil = async (req, res) => {
-    try {
-      const dados = req.body;
-      dados.usuarioId = req.user.id;
-      const perfil = await Empresa.create(dados);
-      res.redirect("/dashboard");
-    } catch (error) {
-      console.error("Erro ao criar perfil da empresa:", error);
-      res.status(500).send("Erro ao criar perfil.");
+  try {
+    const dados = req.body;
+    if (!dados.cnpj || dados.cnpj.trim() === "") {
+      req.flash("error_msg", "CNPJ é obrigatório.");
+      return res.redirect("/usuario/cadastrar"); 
     }
-  };
+    dados.usuarioId = req.user.id;
+    await Empresa.create(dados);
+    res.redirect("/dashboard");
+  } catch (error) {
+    console.error("Erro ao criar perfil da empresa:", error);
+    res.status(500).render("erro", { header: "header-home", mensagem: "Erro ao criar perfil." });
+  }
+};
 
   verTodas = async (req, res) => {
     const empresas = await Empresa.findAll();
-    res.render("admin/empresas", { empresas });
+    res.render("admin/empresas", { empresas, header: "header-home" });
   };
 
   verPerfil = async (req, res) => {
@@ -27,7 +31,10 @@ class EmpresaController {
       type: QueryTypes.SELECT
     })
 
-    res.render("empresa/perfil", {empresa: empresa[0]})
+    console.log(empresa[0]);
+    res.render("empresa/perfil", {
+      header: "header-home",
+      empresa: empresa[0]})
   }
 
   editar = async (req, res) => {
@@ -37,7 +44,10 @@ class EmpresaController {
       type: QueryTypes.SELECT
     })
 
-    res.render("empresa/editar", {empresa: empresa[0]})
+    res.render("empresa/editar", {
+      header: "header-home",
+      empresa: empresa[0]
+    })
   };
 
   salvar = async (req, res) => {

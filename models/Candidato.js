@@ -20,5 +20,5 @@ Candidato.belongsTo(Usuario, {
   as: 'usuario',
 })
 
-// Candidato.sync();
+//Candidato.sync();
 export default Candidato;
