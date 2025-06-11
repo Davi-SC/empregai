@@ -2,6 +2,7 @@ import { QueryTypes } from "sequelize";
 import Candidato from "../models/Candidato.js";
 import Usuario from "../models/Usuario.js";
 import Vaga from "../models/Vaga.js";
+import Empresa from "../models/Empresa.js";
 import banco from "../config/banco.js";
 
 class CandidatoController {
@@ -18,8 +19,48 @@ class CandidatoController {
   };
 
   verVagas = async (req, res) => {
-    const vagas = await Vaga.findAll();
-    res.render("candidato/feed", {vagas: vagas});
+    try {
+      const page = parseInt(req.query.page) || 1
+      const limit = 10
+      const offset = (page - 1) * limit
+
+      const {count, rows: vagas} = await Vaga.findAndCountAll({
+        limit: limit,
+        offset: offset,
+        order: [['createdAt', 'DESC']],
+        include: [{
+          model: Empresa,
+          as: 'empresa',
+          attributes: ['nome_fantasia']
+        }]
+      })
+
+      const totalPages = Math.ceil(count / limit)
+
+      const pages = []
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push({
+          number: 1,
+          isCurrent: i === page
+        })
+      }
+
+      console.log(vagas.dataValues)
+
+      res.render("candidato/feed", {
+        vagas: vagas,
+        currentPage: page,
+        totalPages: totalPages,
+        hasPrevPage: page > 1,
+        hasNextPage: page < totalPages,
+        prevPage: page - 1,
+        nextPage: page + 1,
+        body_class: 'feed-page'
+      })
+    } catch (error) {
+      console.error("Erro ao buscar vagas: ", error)
+      res.status(500).send("Erro ao carregar feed de vagas")
+    }
   };
 
   verPerfil = async (req, res) => {
