@@ -1,14 +1,64 @@
-<div class="container">
-    <h2>Bem-vindo ao Empregai!</h2>
-    <p>Escolha uma das opções abaixo:</p>
-
-    {{#if usuario}}
-        {{#if candidato}}
-            <a href="/candidato/feed" class="btn btn-primary">Ver vagas</a>
-        {{else}}
-            <a href="/empresa/feed" class="btn btn-primary">Ver candidatos</a>
-        {{/if}}
-    {{else}}
-        <a href="/usuario/login" class="btn btn-primary">Faça login para acessar</a>
-    {{/if}}
+<div class="container text-center">
+    <div class="row align-items-center mt-5">
+        <div class="col pb-2">
+            <h1 class="mb-5">Cadastre-se agora e descubra novas oportunidades próximas de você.</h1>
+            <div class="d-grid gap-2">
+                <button class="btn btn-outline-secondary"><img src="https://img.icons8.com/color/16/google-logo.png" />
+                    Entrar com
+                    o
+                    Google</button>
+                <button class="btn btn-outline-secondary"><img src="https://img.icons8.com/ios-filled/16/mac-os.png" />
+                    Entrar com
+                    a
+                    Apple</button>
+                <button class="btn btn btn-outline-primary"><a class="nav-link" href="/usuario/login">Entrar com
+                        e-mail</a></button>
+            </div>
+        </div>
+        <div class="col-7">
+            <img class="img-fluid" src="/img/Career progress-rafiki.png" alt="">
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col">
+            <h3>Encontre diferentes vagas de emprego</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis cumque quod fugiat totam ullam sed
+                non libero laboriosam, ea velit necessitatibus similique reprehenderit est deleniti sint ipsa, ut vitae
+                error.</p>
+        </div>
+        <div class="col-4">
+            <div class="d-flex flex-wrap gap-2">
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Marketing</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Administração pública</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Assistência médica</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Engenharia</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Serviços de TI</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Sustentabilidade</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Administração de empresas</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Telecomunicações</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Gestão de RH</button>
+                <button type="button" class="btn btn-outline-primary rounded-pill">Exibir tudo</button>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5 mb-5">
+        <div class="col">
+            <h3>Busque por candidatos que possam preencher suas vagas</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil officia doloremque quia nobis earum molestias itaque eum aut aperiam ea iusto sunt ex reiciendis accusamus neque quas, incidunt nam modi.</p>
+        </div>
+        <div class="col-4">
+            <div class="d-flex flex-wrap gap-2">
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Marketing</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Administração pública</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Assistência médica</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Engenharia</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Serviços de TI</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Sustentabilidade</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Administração de empresas</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Telecomunicações</button>
+                <button type="button" class="btn btn-outline-secondary rounded-pill">Gestão de RH</button>
+                <button type="button" class="btn btn-outline-primary rounded-pill">Exibir tudo</button>
+            </div>
+        </div>
+    </div>
 </div>

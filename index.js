@@ -1,4 +1,5 @@
 import express from "express";
+
 const app = express();
 
 import handlebars from "express-handlebars";
@@ -41,6 +42,7 @@ app.engine(
   handlebars.engine({
     defaultLayout: "principal",
     handlebars: allowInsecurePrototypeAccess(Handlebars),
+    partialsDir: 'views/partials'
   })
 );
 app.set("view engine", "handlebars");
@@ -59,6 +61,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.render("home/home", {
     candidato: req.user?.tipo === "candidato",
+    header: 'header-home'
   });
 });
 
