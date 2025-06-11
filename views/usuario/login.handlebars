@@ -1,14 +1,47 @@
-<div class="container">
-    <h2>Login</h2>
-    <form method="POST" action="/usuario/login">
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="senha">Senha</label>
-            <input type="password" class="form-control" id="senha" name="senha" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Entrar</button>
+<section class="login-page">
+  <div class="login-card bg-white">
+    <h3 class="mb-3">Entrar</h3>
+
+    <div class="d-grid gap-2 mb-2">
+      <button class="btn btn-outline-secondary"><img src="https://img.icons8.com/color/16/google-logo.png" /> Entrar com
+        o
+        Google</button>
+      <button class="btn btn-outline-secondary"><img src="https://img.icons8.com/ios-filled/16/mac-os.png" /> Entrar com
+        a
+        Apple</button>
+    </div>
+
+    <div class="divider">ou</div>
+
+    <form method="post" action="/usuario/login">
+      <div class="mb-3">
+        <input type="email" class="form-control" placeholder="E-mail" id="email" name="email" required>
+      </div>
+
+      <div class="mb-3 position-relative">
+        <input type="password" class="form-control" placeholder="Senha" id="senha" name="senha" required>
+        <button type="button" class="btn btn-link position-absolute end-0 top-0 mt-2 me-2 p-0 text-decoration-none"
+          style="font-size: 0.9rem;">Exibir</button>
+      </div>
+
+      <div class="mb-2">
+        <a href="#" class="text-link text-primary" style="font-size: 0.9rem;">Esqueceu a senha?</a>
+      </div>
+
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" value="" id="remember" checked>
+        <label class="form-check-label" for="remember">
+          Me mantenha na conta
+        </label>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-gradient rounded-pill">Entrar</button>
+      </div>
     </form>
-</div>
+
+    <div class="mt-3 text-center" style="font-size: 0.9rem;">
+      Ainda não faz parte do Empregai? <a href="./cadastrar" class="text-link text-primary">Cadastre-se agora</a>
+    </div>
+  </div>
+</section>
