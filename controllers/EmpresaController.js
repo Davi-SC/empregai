@@ -1,5 +1,6 @@
 import Empresa from "../models/Empresa.js";
 import Usuario from "../models/Usuario.js";
+import Candidato from "../models/Candidato.js";
 import banco from "../config/banco.js";
 import { QueryTypes } from "sequelize";
 
@@ -20,6 +21,14 @@ class EmpresaController {
     const empresas = await Empresa.findAll();
     res.render("admin/empresas", { empresas });
   };
+
+  verCandidatos = async (req, res) => {
+    const candidatos = await banco.sequelize.query('SELECT u.nome, c.* FROM usuarios u JOIN candidatos c ON u.id = c.usuario_id', {
+      type: QueryTypes.SELECT
+    })
+
+    res.render("empresa/feed", {candidatos: candidatos})
+  }
 
   verPerfil = async (req, res) => {
     const empresa = await banco.sequelize.query('SELECT u.nome, e.* FROM usuarios u JOIN empresas e ON u.id = e.usuario_id WHERE u.id = ?', {
