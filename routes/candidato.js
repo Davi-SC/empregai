@@ -1,10 +1,12 @@
 import express from "express";
 const router = express.Router();
 import CandidatoController from "../controllers/CandidatoController.js";
-import { logado } from "../config/regras.js";
+import { apenasCandidato } from "../config/regras.js";
 
-router.get("/feed", logado, CandidatoController.verTodos);
-router.post("/criar", logado, CandidatoController.criarPerfil);
-router.post("/editar/:id", logado, CandidatoController.editar);
+router.get("/feed", apenasCandidato, CandidatoController.verVagas);
+router.get('/perfil', apenasCandidato, CandidatoController.verPerfil);
+router.post("/criar", apenasCandidato, CandidatoController.criarPerfil);
+router.get("/editar", apenasCandidato, CandidatoController.editar);
+router.post("/editar", apenasCandidato, CandidatoController.salvar);
 
 export default router;

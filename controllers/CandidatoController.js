@@ -1,4 +1,8 @@
+import { QueryTypes } from "sequelize";
 import Candidato from "../models/Candidato.js";
+import Usuario from "../models/Usuario.js";
+import Vaga from "../models/Vaga.js";
+import banco from "../config/banco.js";
 
 class CandidatoController {
   criarPerfil = async (req, res) => {
@@ -13,16 +17,59 @@ class CandidatoController {
     }
   };
 
-  verTodos = async (req, res) => {
-    const candidatos = await Candidato.findAll();
-    res.render("empresa/feed-candidatos", { candidatos });
+  verVagas = async (req, res) => {
+    const vagas = await Vaga.findAll();
+    res.render("candidato/feed", {vagas: vagas});
   };
 
+  verPerfil = async (req, res) => {
+    
+    const candidato = await banco.sequelize.query('SELECT u.nome, c.* FROM usuarios u JOIN candidatos c ON u.id = c.usuario_id WHERE u.id = ?', {
+      replacements: [req.user.id],
+      type: QueryTypes.SELECT
+    })
+
+    res.render("candidato/perfil", {candidato: candidato[0]})
+  }
+
   editar = async (req, res) => {
-    const { id } = req.params;
-    await Candidato.update(req.body, { where: { id } });
-    res.redirect("/dashboard");
+
+    const usuario = await Usuario.findByPk(req.user.id)
+
+    const candidato = await Candidato.findOne({
+      where:{
+        usuario_id: req.user.id
+      }
+    })
+
+    res.render("candidato/editar", {usuario: usuario, candidato: candidato})
   };
+
+  salvar = async (req, res) => {
+
+    Usuario.update({
+      nome: req.body.nome,
+      email: req.body.email,
+    }, {
+      where:{
+        id: req.user.id
+      }
+    }).then(() => {
+      Candidato.update({
+        area_atuacao: req.body.area_atuacao,
+        experiencia: req.body.experiencia,
+        habilidades: req.body.habilidades,
+        localizacao: req.body.localizacao
+      }, {
+        where:{
+          id: req.body.id
+        }
+      }).then(() => {
+        req.flash('success_msg', 'Dados editados com sucesso!')
+        res.redirect('/')
+      })
+    })
+  }
 }
 
 export default new CandidatoController();
