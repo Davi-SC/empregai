@@ -3,6 +3,37 @@
 
         <h1 class="mb-5 text-center">Encontre sua próxima oportunidade</h1>
 
+        <div class="card card-filters mb-5">
+            <div class="card-body">
+                <form action="/candidato/feed" method="GET" class="row g-3 align-items-end">
+                    <div class="col-md-5">
+                        <label for="busca" class="form-label">Buscar por palavra-chave</label>
+                        <input type="text" class="form-control" id="busca" name="busca" placeholder="Ex: Node.js, Vendas, Design" value="{{filtros.busca}}">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="modalidade" class="form-label">Modalidade</label>
+                        <select id="modalidade" name="modalidade" class="form-select">
+                            <option value="">Todas</option>
+                            <option value="remoto" {{#if (eq filtros.modalidade 'remoto')}}selected{{/if}}>Remoto</option>
+                            <option value="presencial" {{#if (eq filtros.modalidade 'presencial')}}selected{{/if}}>Presencial</option>
+                            <option value="híbrido" {{#if (eq filtros.modalidade 'híbrido')}}selected{{/if}}>Híbrido</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="tipo_contrato" class="form-label">Contrato</label>
+                        <select id="tipo_contrato" name="tipo_contrato" class="form-select">
+                            <option value="">Todos</option>
+                            <option value="CLT" {{#if (eq filtros.tipo_contrato 'CLT')}}selected{{/if}}>CLT</option>
+                            <option value="PJ" {{#if (eq filtros.tipo_contrato 'PJ')}}selected{{/if}}>PJ</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-grid">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-search me-2"></i>Filtrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         {{#each vagas}}
         <div class="card vaga-card mb-4">
             <div class="card-body">
@@ -36,7 +67,7 @@
             <ul class="pagination justify-content-center">
                 {{#if hasPrevPage}}
                     <li class="page-item">
-                        <a class="page-link" href="/candidato/feed?page={{prevPage}}">&laquo;</a>
+                        <a class="page-link" href="/candidato/feed?{{{queryString}}}&page={{prevPage}}">&laquo;</a>
                     </li>
                 {{else}}
                     <li class="page-item disabled">
@@ -46,13 +77,13 @@
 
                 {{#each pages}}
                     <li class="page-item {{#if this.isCurrent}}active{{/if}}">
-                        <a class="page-link" href="/candidato/feed?page={{this.number}}">{{this.number}}</a>
+                        <a class="page-link" href="/candidato/feed?{{{queryString}}}&page={{this.number}}">{{this.number}}</a>
                     </li>
                 {{/each}}
 
                 {{#if hasNextPage}}
                     <li class="page-item">
-                        <a class="page-link" href="/candidato/feed?page={{nextPage}}">&raquo;</a>
+                        <a class="page-link" href="/candidato/feed?{{{queryString}}}&page={{nextPage}}">&raquo;</a>
                     </li>
                 {{else}}
                     <li class="page-item disabled">

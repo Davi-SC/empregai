@@ -56,6 +56,84 @@
 }
 
 /* ========================================= */
+/* ESTILOS ESCOPADOS PARA A PÁGINA DE PERFIL   */
+/* ========================================= */
+
+.perfil-candidato-page .perfil-card,
+.perfil-candidato-page .summary-card {
+  background-color: #fff;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  height: 100%;
+}
+
+.perfil-candidato-page .perfil-section .section-title {
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f1f3f5;
+}
+
+.perfil-candidato-page .perfil-section p {
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Reutilizando o estilo do feed de candidatos */
+.perfil-candidato-page .skill-badge {
+    display: inline-block;
+    background-color: #e9ecef;
+    color: #495057;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5em 1em;
+    border-radius: 15px;
+    margin: 4px;
+}
+
+
+/* --- Coluna da Direita --- */
+
+.perfil-candidato-page .summary-card {
+    position: sticky;
+    top: 100px;
+}
+
+.perfil-candidato-page .avatar-icon-lg {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  color: #ced4da;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.perfil-candidato-page .avatar-icon-lg i {
+  font-size: 80px;
+}
+
+.perfil-candidato-page .nome-candidato {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-top: 1rem;
+}
+
+.perfil-candidato-page .area-candidato {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.perfil-candidato-page .profile-actions .btn {
+    font-size: 1rem;
+    padding: 0.75rem;
+}
+
+/* ========================================= */
 /* ESTILOS ESCOPADOS PARA O FEED DE VAGAS    */
 /* (SÓ AFETAM A PÁGINA COM A CLASSE .feed-page) */
 /* ========================================= */
@@ -140,4 +218,137 @@
 .feed-page .pagination .page-item.disabled .page-link {
   background-color: transparent;
   color: #aaa;
+}
+
+.candidatos-feed-page .candidato-list-item {
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.candidatos-feed-page .candidato-list-item:hover {
+  border-color: #0061ff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+/* Estilo para o avatar na lista (JÁ COM O TAMANHO CORRIGIDO) */
+.candidatos-feed-page .avatar-icon-list {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background-color: #f1f3f5;
+  color: #adb5bd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.candidatos-feed-page .avatar-icon-list i {
+  font-size: 45px;
+}
+
+/* Estilos para o texto dentro do item da lista */
+.candidatos-feed-page .candidato-list-item h5 {
+  font-weight: 600;
+  color: #212529;
+}
+
+.candidatos-feed-page .candidato-list-item .text-primary {
+    font-size: 1rem;
+}
+
+.candidatos-feed-page .candidato-list-item .text-muted {
+    font-size: 0.9rem;
+}
+
+/* Estilos para os badges de habilidades na lista */
+.candidatos-feed-page .habilidades-wrapper-list .skill-badge {
+  display: inline-block;
+  background-color: #e9ecef;
+  color: #495057;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.35em 0.8em;
+  border-radius: 15px;
+  margin: 2px;
+}
+
+/* ========================================= */
+/* ESTILOS ESCOPADOS PARA A PÁGINA DE DETALHE  */
+/* ========================================= */
+
+.detalhe-vaga-page .vaga-titulo {
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.detalhe-vaga-page .empresa-titulo a {
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #555 !important;
+  transition: color 0.2s ease;
+}
+
+.detalhe-vaga-page .empresa-titulo a:hover {
+    color: #0061ff !important;
+}
+
+.detalhe-vaga-page .vaga-section {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.detalhe-vaga-page .section-title {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.detalhe-vaga-page .vaga-descricao {
+    line-height: 1.8;
+    color: #555;
+}
+
+.detalhe-vaga-page .requisitos-lista {
+  list-style: none;
+  padding-left: 0;
+}
+
+.detalhe-vaga-page .requisitos-lista li {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  color: #333;
+}
+
+.detalhe-vaga-page .requisitos-lista li .fa-check-circle {
+    color: #008a50;
+}
+
+.detalhe-vaga-page .vaga-summary-card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  position: sticky; /* Efeito "flutuante" */
+  top: 100px; /* Distância do topo ao "flutuar" */
+}
+
+.detalhe-vaga-page .vaga-summary-card li {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.detalhe-vaga-page .vaga-summary-card li i {
+    color: #0061ff;
+    width: 25px; /* Alinha os ícones */
 }

@@ -42,7 +42,15 @@ app.engine(
   handlebars.engine({
     defaultLayout: "principal",
     handlebars: allowInsecurePrototypeAccess(Handlebars),
-    partialsDir: 'views/partials'
+    partialsDir: 'views/partials',
+    helpers: {
+      lt: function (a, b) {
+        return a < b;
+      },
+      eq: function (a, b) {
+        return a === b;
+      }
+    }
   })
 );
 app.set("view engine", "handlebars");

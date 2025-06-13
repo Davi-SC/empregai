@@ -1,17 +1,94 @@
-{{#if candidatos.length}}
-    <div>
-        {{#each candidatos}}
-            <a href="candidato/visualizar-perfil/{{id}}">
-                <h3>{{nome}}</h3>
-                <p>{{area_atuacao}}</p>
-                <span>{{experiencia}}</span>
-                <p>{{habilidades}}</p>
-                <p>{{localizacao}}</p>
-            </a>
-        {{/each}}
+<main class="candidatos-feed-container py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-5">Encontre os Melhores Talentos</h1>
+            <p class="lead text-muted">Navegue pelos perfis dos candidatos mais qualificados do mercado.</p>
+            
+            <div class="card card-filters mb-5">
+                <div class="card-body">
+                    <form action="/empresa/feed" method="GET" class="row g-3 align-items-end">
+                        <div class="col-md-6">
+                            <label for="busca" class="form-label">Buscar por Habilidade ou Área</label>
+                            <input type="text" class="form-control" id="busca" name="busca" placeholder="Ex: React, Python, DevOps, UI/UX" value="{{filtros.busca}}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="localizacao" class="form-label">Localização</label>
+                            <input type="text" class="form-control" id="localizacao" name="localizacao" placeholder="Ex: São Paulo, Remoto" value="{{filtros.localizacao}}">
+                        </div>
+                        <div class="col-md-2 d-grid">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search me-2"></i>Filtrar Talentos</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            {{#each candidatos}}
+            <div class="col-12 mb-3">
+                <div class="candidato-list-item card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+
+                            <div class="col-lg-1 col-md-2 text-center">
+                                <div class="avatar-icon-list mx-auto">
+                                    <i class="fas fa-user-circle"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-8 col-md-6">
+                                <h5 class="mb-0">{{this.usuario.nome}}</h5>
+                                <p class="text-primary fw-bold mb-1">{{this.area_atuacao}}</p>
+                                <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i> {{this.localizacao}}</p>
+                                <div class="habilidades-wrapper-list mt-2">
+                                    {{#each habilidadesArray}}
+                                        {{#if (lt @index 5)}}
+                                            <span class="skill-badge">{{this}}</span>
+                                        {{/if}}
+                                    {{/each}}
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-3 col-md-4 text-end">
+                                <a href="/candidato/perfil/{{this.id}}" class="btn btn-outline-primary mt-3 mt-md-0">
+                                <i class="fas fa-eye me-2"></i> Ver Perfil
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="col-12">
+                <div class="text-center p-5 bg-light rounded">
+                    <h4>Nenhum candidato encontrado.</h4>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        {{#if totalPages}}
+        <nav class="mt-4" aria-label="Navegação de página">
+             <ul class="pagination justify-content-center">
+                {{#if hasPrevPage}}
+                    <li class="page-item"><a class="page-link" href="/empresa/feed?{{{queryString}}}&page={{prevPage}}">&laquo;</a></li>
+                {{else}}
+                    <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+                {{/if}}
+
+                {{#each pages}}
+                    <li class="page-item {{#if this.isCurrent}}active{{/if}}"><a class="page-link" href="/empresa/feed?{{{queryString}}}&page={{this.number}}">{{this.number}}</a></li>
+                {{/each}}
+                
+                {{#if hasNextPage}}
+                    <li class="page-item"><a class="page-link" href="/empresa/feed?{{{queryString}}}&page={{nextPage}}">&raquo;</a></li>
+                {{else}}
+                    <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+        {{/if}}
+
     </div>
-{{else}}
-    <div>
-        <h3>Nenhum candidato disponível</h3>
-    </div>
-{{/if}}
+</main>
