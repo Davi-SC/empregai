@@ -1,0 +1,63 @@
+<main class="detalhe-vaga-container py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="vaga-header mb-4">
+                    <h1 class="vaga-titulo">{{vaga.titulo}}</h1>
+                    <h4 class="empresa-titulo">
+                        <a href="/empresa/{{vaga.empresa.id}}" class="text-decoration-none text-muted">
+                            <i class="fas fa-building me-2"></i>{{vaga.empresa.nome_fantasia}}
+                        </a>
+                    </h4>
+                    <p class="vaga-localizacao-header text-muted">
+                        <i class="fas fa-map-marker-alt me-2"></i>{{vaga.localizacao}}
+                    </p>
+                </div>
+
+                <div class="vaga-section">
+                    <h5 class="section-title">Descrição da Vaga</h5>
+                    <p class="vaga-descricao">
+                        {{{vaga.descricao}}}
+                    </p>
+                </div>
+
+                <div class="vaga-section mt-4">
+                    <h5 class="section-title">Requisitos</h5>
+                    <ul class="requisitos-lista">
+                        {{#each requisitosArray}}
+                            <li><i class="fas fa-check-circle me-2"></i>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="vaga-summary-card">
+                    <h5 class="card-title-summary mb-4">Resumo da Vaga</h5>
+                    <ul class="list-unstyled">
+                        <li>
+                            <i class="fas fa-file-contract fa-fw me-2"></i>
+                            <strong>Contrato:</strong> {{vaga.tipo_contrato}}
+                        </li>
+                        <li>
+                            <i class="fas fa-desktop fa-fw me-2"></i>
+                            <strong>Modalidade:</strong> {{vaga.modalidade}}
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt fa-fw me-2"></i>
+                            <strong>Local:</strong> {{vaga.localizacao}}
+                        </li>
+                        <li>
+                            <i class="fas fa-industry fa-fw me-2"></i>
+                            <strong>Setor:</strong> {{vaga.empresa.setor}}
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="d-grid mt-4">
+                        <a href="/vaga/{{vaga.id}}/candidatar" class="btn btn-gradient btn-lg">Candidatar-se agora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

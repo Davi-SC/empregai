@@ -1,39 +1,56 @@
-<div class="container py-4">
-  <div class="card shadow-sm mb-4">
-    <div class="profile-banner">
-      <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg" class="profile-header-img" alt="Company Banner">
-    </div>
-    <div class="profile-content">
-      <div class="rounded-circle bg-primary profile-avatar">
-        <!-- adicionar foto do candidato -->
-      </div>
-      <div class="profile-info">
-        <h2 class="mb-1">{{candidato.nome}}</h2>
-        <p class="text-muted mb-1">Área de atuação: {{candidato.area_atuacao}}</p>
-        <p class="text-muted mb-3">{{candidato.localizacao}}</p>
-        <div class="d-flex flex-wrap gap-2">
-          <a href="#" class="btn btn-primary">Situação</a>
-          <a href="#" class="btn btn-primary">Recursos</a>
-          <a href="#" class="btn btn-primary">Aprimorar perfil</a>
-          <a href="/candidato/editar" class="btn btn-primary">Editar perfil</a>
-        </div>
-      </div>
-    </div>
-  </div>
+<main class="perfil-candidato-container py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="perfil-card">
+                    <div class="card-body">
+                        <div class="perfil-section">
+                            <h4 class="section-title">Experiência Profissional</h4>
+                            <p>{{{candidato.experiencia}}}</p>
+                        </div>
+                        <hr>
+                        <div class="perfil-section mt-4">
+                            <h4 class="section-title">Habilidades</h4>
+                            <div class="habilidades-wrapper">
+                                {{#each habilidadesArray}}
+                                    <span class="skill-badge">{{this}}</span>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <div class="card shadow-sm">
-    <div class="card-body">
-      <h3 class="mb-4">Sugestões para você</h3>
-      <div class="suggestions-container d-flex flex-wrap gap-4">
-        <div class="suggestion-card">
-          <i class="bi bi-building-gear"></i>
-          <button class="btn btn-outline-primary suggestion-btn">Adicionar experiência</button>
+            <div class="col-lg-4">
+                <div class="summary-card text-center">
+                    <div class="avatar-icon-lg mx-auto mb-3">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3 class="nome-candidato">{{candidato.usuario.nome}}</h3>
+                    <p class="area-candidato text-primary fw-bold">{{candidato.area_atuacao}}</p>
+                    <p class="localizacao-candidato text-muted"><i class="fas fa-map-marker-alt me-2"></i>{{candidato.localizacao}}</p>
+                    
+                    <hr>
+
+                    {{#if isOwner}}
+                    <div class="profile-actions mt-4">
+                        <h5 class="text-start text-muted mb-3">Ações</h5>
+                        <div class="d-grid gap-2">
+                           <a href="/candidato/perfil/editar" class="btn btn-primary"><i class="fas fa-edit me-2"></i>Editar Perfil</a>
+                           <a href="/minhas-candidaturas" class="btn btn-outline-secondary"><i class="fas fa-briefcase me-2"></i>Minhas Candidaturas</a>
+                        </div>
+                    </div>
+                    {{/if}}
+                     {{#unless isOwner}}
+                        {{#if (eq usuario.tipo 'empresa')}}
+                         <div class="d-grid mt-4">
+                             <a href="#" class="btn btn-gradient"><i class="fas fa-envelope me-2"></i>Entrar em Contato</a>
+                         </div>
+                        {{/if}}
+                    {{/unless}}
+
+                </div>
+            </div>
         </div>
-        <div class="suggestion-card">
-          <i class="bi bi-lightbulb"></i>
-          <button class="btn btn-outline-primary suggestion-btn">Adicionar habilidades</button>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
+</main>

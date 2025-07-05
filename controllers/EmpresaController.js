@@ -2,7 +2,7 @@ import Empresa from "../models/Empresa.js";
 import Usuario from "../models/Usuario.js";
 import Candidato from "../models/Candidato.js";
 import banco from "../config/banco.js";
-import { QueryTypes } from "sequelize";
+import { Op, QueryTypes, where } from "sequelize";
 
 class EmpresaController {
   criarPerfil = async (req, res) => {
@@ -27,11 +27,78 @@ class EmpresaController {
   };
 
   verCandidatos = async (req, res) => {
-    const candidatos = await banco.sequelize.query('SELECT u.nome, c.* FROM usuarios u JOIN candidatos c ON u.id = c.usuario_id', {
-      type: QueryTypes.SELECT
-    })
+    try {
+      const page = parseInt(req.query.page) || 1
+      const {busca, localizacao} = req.query
 
-    res.render("empresa/feed", {candidatos: candidatos})
+      const limit = 9
+      const offset = (page - 1) * limit
+
+      const whereCandidato = {}
+      if (busca) {
+        whereCandidato[Op.or] = [
+          {'$usuario.nome$': {[Op.like]: `%${busca}%`}},
+          {area_atuacao: {[Op.like]: `%${busca}%`}},
+          {habilidades: {[Op.like]: `%${busca}%`}}
+        ]
+      }
+
+      if (localizacao) {
+        whereCandidato.localizacao = {[Op.like]: `%${localizacao}%`}
+      }
+
+      const {count, rows: candidatos} = await Candidato.findAndCountAll({
+        where: whereCandidato,
+        limit: limit,
+        offset: offset,
+        order: [['createdAt', 'DESC']],
+        include: [{
+          model: Usuario,
+          as: 'usuario',
+          attributes: ['nome']
+        }],
+        subQuery: false
+      })
+
+      const candidatosComHabilidades = candidatos.map(candidato => {
+        const plainCandidato = candidato.get({plain: true})
+        return {
+          ...plainCandidato,
+          habilidadesArray: plainCandidato.habilidades ? plainCandidato.habilidades.split(',').map(h => h.trim()) : []
+        }
+      })
+      
+      const totalPages = Math.ceil(count / limit)
+
+      const pages = []
+      for (let i=1; i <= totalPages; i++) {
+        pages.push({
+          number: i,
+          isCurrent: i === page
+        })
+      }
+
+      const queryParams = new URLSearchParams(req.query)
+      queryParams.delete('page')
+      const queryString = queryParams.toString()
+
+      res.render("empresa/feed", {
+        candidatos: candidatosComHabilidades,
+        pages: pages,
+        currentPage: page,
+        totalPages: totalPages,
+        hasPrevPage: page > 1,
+        hasNextPage: page < totalPages,
+        prevPage: page - 1,
+        nextPage: page + 1,
+        filtros: {busca, localizacao},
+        queryString: queryString,
+        body_class: 'candidatos-feed-page'
+      })
+    } catch (error) {
+      console.error("Erro ao buscar candidatos: ", error)
+      res.status(500).send("Ocorreu um erro no servidor.")
+    }
   }
 
   verPerfil = async (req, res) => {

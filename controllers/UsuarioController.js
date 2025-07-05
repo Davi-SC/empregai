@@ -6,10 +6,31 @@ import passport from "passport";
 
 class UsuarioController {
   login = (req, res, next) => {
-    passport.authenticate("local", {
-      successRedirect: "/",
-      failureRedirect: "/usuario/login",
-      failureFlash: true,
+    passport.authenticate("local", (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+
+      if (!user) {
+        req.flash("error_msg", info.message || "Usuário ou senha inválidos.");
+        return res.redirect("/usuario/login");
+      }
+
+      req.logIn(user, (err) => {
+        if (err) {
+          return next(err);
+        }
+
+        if (user.tipo === 'candidato') {
+          return res.redirect('/candidato/feed');
+        }
+        
+        if (user.tipo === 'empresa') {
+          return res.redirect('/empresa/feed'); 
+        }
+
+        return res.redirect('/');
+      });
     })(req, res, next);
   };
 
