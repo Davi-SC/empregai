@@ -3,6 +3,12 @@ import Candidato from "../models/Candidato.js";
 import Usuario from "../models/Usuario.js";
 import Vaga from "../models/Vaga.js";
 import Empresa from "../models/Empresa.js";
+import Candidatura from "../models/Candidatura.js";
+
+function formatDate(date) {
+  if (!date) return "";
+  return new Date(date).toLocaleDateString("pt-BR");
+}
 
 class CandidatoController {
   criarPerfil = async (req, res) => {
@@ -161,6 +167,32 @@ class CandidatoController {
         res.redirect('/')
       })
     })
+  }
+
+
+
+  minhasCandidaturas = async (req, res) => {
+    try {
+      const candidatoId = req.user.id; // id do candidato logado
+
+      const candidaturasRaw = await Candidatura.findAll({
+        where: { candidato_id: candidatoId },
+        include: [
+          { model: Vaga, as: "vaga", include: [{ model: Empresa, as: "empresa" }] }
+        ]
+      });
+
+      // Mapeia e formata as datas
+      const candidaturas = candidaturasRaw.map(c => ({
+        ...c.toJSON(),
+        data_candidatura: formatDate(c.data_candidatura)
+      }));
+
+      res.render("candidato/minhas-candidaturas", { candidaturas });
+    } catch (error) {
+      console.error(error);
+      res.render("error/500", { message: "Erro ao buscar candidaturas." });
+    }
   }
 }
 
