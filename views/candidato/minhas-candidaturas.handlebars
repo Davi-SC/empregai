@@ -1,0 +1,28 @@
+<h1 class="mb-4">Minhas Candidaturas</h1>
+<div class="row">
+  {{#if candidaturas.length}}
+    {{#each candidaturas}}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{vaga.titulo}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              <i class="fas fa-building"></i> {{vaga.empresa.nome_fantasia}}
+            </h6>
+            <p class="mb-1">
+              <i class="fas fa-map-marker-alt"></i> {{vaga.localizacao}}
+            </p>
+            <p class="mb-1">
+              <i class="fas fa-calendar-alt"></i> Candidatado em: {{data_candidatura}}
+            </p>
+            <a href="/vaga/{{vaga.id}}" class="btn btn-primary mt-2">Ver vaga</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+    <div class="col-12">
+      <div class="alert alert-info">Você ainda não se candidatou a nenhuma vaga.</div>
+    </div>
+  {{/if}}
+</div>

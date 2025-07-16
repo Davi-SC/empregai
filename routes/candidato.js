@@ -8,5 +8,6 @@ router.get('/perfil/:id', logado, CandidatoController.verPerfil);
 router.post("/criar", apenasCandidato, CandidatoController.criarPerfil);
 router.get("/editar", apenasCandidato, CandidatoController.editar);
 router.post("/editar", apenasCandidato, CandidatoController.salvar);
+router.get("/candidaturas", logado, CandidatoController.minhasCandidaturas);
 
 export default router;
