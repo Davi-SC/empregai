@@ -7,10 +7,19 @@ const Vaga = banco.sequelize.define("vagas", {
     primaryKey: true,
     autoIncrement: true,
   },
-  titulo: banco.Sequelize.STRING(150),
-  descricao: banco.Sequelize.TEXT,
+  titulo: {
+    type: banco.Sequelize.STRING(150),
+    allowNull: false
+  },
+  descricao: {
+    type: banco.Sequelize.TEXT,
+    allowNull: false
+  },
   requisitos: banco.Sequelize.TEXT,
-  tipo_contrato: banco.Sequelize.STRING(50),
+  tipo_contrato: {
+    type: banco.Sequelize.ENUM("CLT", "PJ", "Estágio"),
+    allowNull: false
+  },
   modalidade: banco.Sequelize.ENUM("remoto", "presencial", "híbrido"),
   localizacao: banco.Sequelize.STRING(100),
 });
