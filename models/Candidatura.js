@@ -12,6 +12,13 @@ const Candidatura = banco.sequelize.define("candidaturas", {
     type: banco.Sequelize.DATE,
     defaultValue: banco.Sequelize.NOW,
   },
+}, {
+  indexes: [
+    {
+      unique: true,
+      fields: ['candidato_id', 'vaga_id'] // Evita candidaturas duplicadas para o mesmo candidato e vaga
+    }
+  ]
 });
 
 Candidatura.belongsTo(Candidato, {
