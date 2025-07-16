@@ -1,5 +1,6 @@
 import Empresa from "../models/Empresa.js";
 import Vaga from "../models/Vaga.js";
+import Candidatura from "../models/Candidatura.js"; // Importe o model de candidatura
 
 class VagaController {
 
@@ -55,6 +56,36 @@ class VagaController {
     await Vaga.update(req.body, { where: { id } });
     res.redirect("/empresa/vagas");
   };
+
+  candidatar = async (req, res) => {
+    try {
+      const vagaId = req.params.id;
+      const candidatoId = req.user.id; // Supondo que o id do candidato está na sessão
+
+      // Verifica se já existe candidatura para essa vaga e candidato
+      const candidaturaExistente = await Candidatura.findOne({
+        where: { vaga_id: vagaId, candidato_id: candidatoId }
+      });
+
+      if (candidaturaExistente) {
+        req.flash("error_msg", "Você já se candidatou para esta vaga.");
+        return res.redirect(`/vaga/${vagaId}`);
+      }
+
+      // Insere nova candidatura
+      await Candidatura.create({
+        vaga_id: vagaId,
+        candidato_id: candidatoId
+      });
+
+      req.flash("success_msg", "Candidatura realizada com sucesso!");
+      res.redirect(`/vaga/${vagaId}`);
+    } catch (error) {
+      console.error("Erro ao processar candidatura:", error);
+      req.flash("error_msg", "Ocorreu um erro ao processar sua candidatura.");
+      res.redirect(`/vaga/${vagaId}`);
+    }
+  }
 }
 
 export default new VagaController();

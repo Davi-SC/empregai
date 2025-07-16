@@ -7,5 +7,6 @@ router.get("/:id", logado, VagaController.verDetalheVaga)
 router.get("/feed", logado, VagaController.verFeed);
 router.post("/criar", logado, VagaController.criar);
 router.post("/editar/:id", logado, VagaController.editar);
+router.get("/:id/candidatar", logado, VagaController.candidatar);
 
 export default router;
