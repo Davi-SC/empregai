@@ -1,0 +1,398 @@
+<style>
+    .documentation-header {
+        background-color: #f8f9fa;
+        padding: 60px 0;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #e2e6ea;
+    }
+
+    .documentation-header h1 {
+        color: #007bff;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .documentation-header p.lead {
+        font-size: 1.25rem;
+        color: #6c757d;
+    }
+
+    .documentation-section {
+        padding: 40px 0;
+        border-bottom: 1px solid #eee;
+        background-color: #fff;
+        margin-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: .3rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, .075);
+    }
+
+    .documentation-section:last-child {
+        border-bottom: none;
+    }
+
+    .documentation-section h2 {
+        font-size: 2.2rem;
+        color: #0056b3;
+        border-left: 5px solid #007bff;
+        padding-left: 10px;
+        margin-bottom: 30px;
+    }
+
+    .documentation-section h3 {
+        font-size: 1.8rem;
+        color: #343a40;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .documentation-section ul,
+    .documentation-section ol {
+        margin-bottom: 20px;
+    }
+
+    .documentation-section li {
+        margin-bottom: 10px;
+    }
+
+    .sidebar-nav {
+        position: sticky;
+        top: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: .3rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, .075);
+    }
+
+    .sidebar-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar-nav ul li a {
+        display: block;
+        padding: 8px 0;
+        color: #495057;
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+    }
+
+    .sidebar-nav ul li a:hover {
+        color: #007bff;
+    }
+
+    .sidebar-nav ul li a.active {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .documentation-section i {
+        margin-right: 8px;
+        color: #007bff;
+
+    }
+</style>
+
+<div class="documentation-header text-center">
+    <div class="container">
+        <h1>Documentação do Usuário: Empregai</h1>
+        <p class="lead">Bem-vindo ao Empregai, sua plataforma completa para encontrar as melhores oportunidades de
+            emprego ou o talento ideal para sua equipe! Este guia vai te ajudar a navegar e aproveitar ao máximo todas
+            as funcionalidades do sistema.</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <nav class="sidebar-nav">
+                <h6>Navegar na Documentação</h6>
+                <ul>
+                    <li><a href="#primeiros-passos">1. Primeiros Passos</a></li>
+                    <li><a href="#perfis-de-usuario">2. Perfis de Usuário</a></li>
+                    <li><a href="#vagas-de-emprego">3. Vagas de Emprego</a></li>
+                    <li><a href="#funcionalidades-adicionais">4. Funcionalidades Adicionais</a></li>
+                    <li><a href="#faq-e-solucao-de-problemas">5. Perguntas Frequentes (FAQ)</a></li>
+                    <li><a href="#canais-de-suporte">6. Canais de Suporte</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-9">
+            <div class="documentation-section" id="primeiros-passos">
+                <h2><i class="bi bi-play-circle"></i> 1. Primeiros Passos</h2>
+                <p>Começar a usar o Empregai é simples e rápido. Siga os passos abaixo para criar sua conta e começar
+                    sua jornada.</p>
+
+                <h3><i class="bi bi-person-plus"></i> Registro e Login</h3>
+                <ol>
+                    <li><strong>Acesse a Plataforma:</strong> Abra seu navegador e vá para o endereço do Empregai.</li>
+                    <li><strong>Crie Sua Conta:</strong>
+                        <ul>
+                            <li>Se você é um **candidato** em busca de vagas, clique em "Registrar como Candidato".</li>
+                            <li>Se você é um **empregador** procurando talentos, clique em "Registrar como Empregador".
+                            </li>
+                            <li>Preencha os campos solicitados (nome, e-mail, senha, etc.) e siga as instruções para
+                                finalizar seu registro.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Faça Login:</strong> Após o registro, ou se você já possui uma conta, clique em "Login".
+                        Insira seu e-mail e senha cadastrados e clique em "Entrar".</li>
+                </ol>
+
+                <h3><i class="bi bi-app"></i> Visão Geral da Interface</h3>
+                <p>Ao fazer login, você será direcionado para sua página inicial. Nela, você encontrará:</p>
+                <ul>
+                    <li><strong>Barra de Navegação:</strong> Localizada no topo da página, contém links para as
+                        principais seções, como "Meu Perfil", "Vagas" e "Mensagens".</li>
+                    <li><strong>Painel Principal:</strong> Exibe informações relevantes para o seu tipo de usuário (por
+                        exemplo, vagas recomendadas para candidatos, ou um resumo de vagas publicadas para
+                        empregadores).</li>
+                    <li><strong>Atalhos Rápidos:</strong> Botões ou links para ações comuns, como "Publicar Vaga" ou
+                        "Buscar Vagas".</li>
+                </ul>
+            </div>
+
+
+            <div class="documentation-section" id="perfis-de-usuario">
+                <h2><i class="bi bi-person-circle"></i> 2. Perfis de Usuário</h2>
+                <p>Seu perfil é sua identidade no Empregai. Mantê-lo atualizado é crucial para o sucesso da sua
+                    experiência na plataforma.</p>
+
+                <h3><i class="bi bi-person"></i> Para Candidatos</h3>
+                <p>Seu perfil de candidato é seu currículo online. Ele permite que empregadores encontrem você e que
+                    suas candidaturas se destaquem.</p>
+                <ul>
+                    <li><strong>Criar e Editar Currículo:</strong>
+                        <ol>
+                            <li>Vá para "Meu Perfil" na barra de navegação.</li>
+                            <li>Clique em "Editar Perfil" ou "Adicionar Currículo".</li>
+                            <li>Preencha as seções:
+                                <ul>
+                                    <li><strong>Informações Pessoais:</strong> Nome, contato, e-mail.</li>
+                                    <li><strong>Experiência Profissional:</strong> Detalhes de empregos anteriores
+                                        (cargo, empresa, período, descrição das atividades).</li>
+                                    <li><strong>Educação:</strong> Formação acadêmica (curso, instituição, período).
+                                    </li>
+                                    <li><strong>Habilidades:</strong> Liste suas competências (idiomas, softwares, hard
+                                        skills, soft skills).</li>
+                                </ul>
+                            </li>
+                            <li>Lembre-se de **salvar** as alterações.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Gerenciar Visibilidade:</strong> Você pode definir se seu perfil é visível publicamente
+                        para empregadores ou apenas para empresas às quais você se candidatou. Acesse as configurações
+                        de privacidade em "Meu Perfil".</li>
+                </ul>
+
+                <h3><i class="bi bi-building"></i> Para Empregadores</h3>
+                <p>O perfil da sua empresa é sua vitrine no Empregai, atraindo os melhores talentos.</p>
+                <ul>
+                    <li><strong>Criar e Gerenciar o Perfil da Empresa:</strong>
+                        <ol>
+                            <li>Acesse "Meu Perfil" na barra de navegação.</li>
+                            <li>Clique em "Editar Perfil da Empresa" ou "Configurar Empresa".</li>
+                            <li>Adicione informações como:
+                                <ul>
+                                    <li><strong>Nome da Empresa e Logotipo:</strong> Facilita o reconhecimento.</li>
+                                    <li><strong>Descrição da Empresa:</strong> Uma breve apresentação da sua cultura e o
+                                        que vocês buscam.</li>
+                                    <li><strong>Setor e Localização:</strong> Ajuda a segmentar sua busca por
+                                        candidatos.</li>
+                                    <li><strong>Informações de Contato:</strong> Para que os candidatos possam se
+                                        comunicar.</li>
+                                </ul>
+                            </li>
+                            <li>Não se esqueça de **salvar** as mudanças.</li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="documentation-section" id="vagas-de-emprego">
+                <h2><i class="bi bi-briefcase"></i> 3. Vagas de Emprego</h2>
+                <p>A seção de vagas é o coração do Empregai, conectando oportunidades e talentos.</p>
+
+                <h3><i class="bi bi-search"></i> Para Candidatos</h3>
+                <ul>
+                    <li><strong>Pesquisar e Filtrar Vagas:</strong>
+                        <ol>
+                            <li>Clique em "Vagas" na barra de navegação.</li>
+                            <li>Utilize a barra de pesquisa para digitar palavras-chave (ex: "Desenvolvedor",
+                                "Marketing").</li>
+                            <li>Use os filtros disponíveis para refinar sua busca por:
+                                <ul>
+                                    <li>Área de atuação</li>
+                                    <li>Localização</li>
+                                    <li>Nível de experiência</li>
+                                    <li>Tipo de contrato (CLT, PJ, Estágio)</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </li>
+                    <li><strong>Visualizar Detalhes de uma Vaga:</strong>
+                        <ol>
+                            <li>Clique no título de uma vaga na lista de resultados para ver informações completas, como
+                                descrição, requisitos, benefícios e informações da empresa.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Candidatar-se a uma Vaga:</strong>
+                        <ol>
+                            <li>Na página de detalhes da vaga, clique no botão "Candidatar-se".</li>
+                            <li>Confirme seus dados e envie sua candidatura.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Acompanhar o Status das Candidaturas:</strong>
+                        <ol>
+                            <li>Acesse "Minhas Candidaturas" (geralmente em "Meu Perfil" ou na barra de navegação).</li>
+                            <li>Verifique o status de cada vaga à qual você se candidatou (ex: "Em Análise",
+                                "Entrevista", "Rejeitado").</li>
+                        </ol>
+                    </li>
+                </ul>
+
+                <h3><i class="bi bi-plus-square"></i> Para Empregadores</h3>
+                <ul>
+                    <li><strong>Criar e Publicar Novas Vagas:</strong>
+                        <ol>
+                            <li>Na sua página inicial ou em "Minhas Vagas", clique em "Publicar Nova Vaga".</li>
+                            <li>Preencha todos os campos obrigatórios:
+                                <ul>
+                                    <li>Título da Vaga</li>
+                                    <li>Descrição Detalhada (responsabilidades, requisitos)</li>
+                                    <li>Localização</li>
+                                    <li>Tipo de Contrato</li>
+                                    <li>Faixa Salarial (opcional)</li>
+                                    <li>Requisitos específicos (habilidades, experiência)</li>
+                                </ul>
+                            </li>
+                            <li>Revise as informações e clique em "Publicar Vaga".</li>
+                        </ol>
+                    </li>
+                    <li><strong>Gerenciar Vagas Existentes:</strong>
+                        <ol>
+                            <li>Acesse "Minhas Vagas" para ver todas as vagas que você publicou.</li>
+                            <li>Você pode "Editar" uma vaga para atualizar informações, "Pausar" para retirá-la
+                                temporariamente do ar, ou "Encerrar" quando a vaga for preenchida.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Visualizar e Gerenciar Candidaturas Recebidas:</strong>
+                        <ol>
+                            <li>Na página "Minhas Vagas", clique no título de uma vaga para ver as candidaturas.</li>
+                            <li>Analise os perfis dos candidatos, filtre por critérios e altere o status das
+                                candidaturas (ex: "Em Análise", "Convidar para Entrevista", "Rejeitar").</li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="documentation-section" id="funcionalidades-adicionais">
+                <h2><i class="bi bi-gear"></i> 4. Funcionalidades Adicionais</h2>
+                <p>O Empregai oferece recursos para otimizar sua experiência.</p>
+
+                <ul>
+                    <li><strong>Notificações:</strong>
+                        <ul>
+                            <li>Fique por dentro de novas vagas (para candidatos) ou novas candidaturas (para
+                                empregadores).</li>
+                            <li>Acesse "Configurações de Notificação" (geralmente em "Meu Perfil" ou "Configurações")
+                                para personalizar quais alertas você deseja receber e como (e-mail, notificações no
+                                aplicativo).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Mensagens:</strong>
+                        <ul>
+                            <li>Se o Empregai possuir um sistema de mensagens interno, você poderá se comunicar
+                                diretamente com empregadores/candidatos.</li>
+                            <li>Acesse a seção "Mensagens" para ver suas conversas, iniciar novas e responder.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Recuperação de Senha:</strong>
+                        <ul>
+                            <li>Caso esqueça sua senha, na tela de login, clique em "Esqueceu sua senha?".</li>
+                            <li>Siga as instruções para redefinir sua senha através do seu e-mail cadastrado.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="documentation-section" id="faq-e-solucao-de-problemas">
+                <h2><i class="bi bi-question-circle"></i> 5. Perguntas Frequentes (FAQ) e Solução de Problemas</h2>
+                <p>Aqui estão algumas das perguntas e soluções mais comuns:</p>
+
+                <ul>
+                    <li><strong>Não consigo fazer login.</strong>
+                        <ul>
+                            <li>Verifique se seu e-mail e senha estão corretos (atenção a letras maiúsculas/minúsculas).
+                            </li>
+                            <li>Tente redefinir sua senha usando a opção "Esqueceu sua senha?".</li>
+                            <li>Verifique sua conexão com a internet.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Não encontro vagas relevantes.</strong>
+                        <ul>
+                            <li>Revise suas palavras-chave e filtros de pesquisa. Tente usar termos mais amplos ou
+                                diferentes.</li>
+                            <li>Certifique-se de que seu perfil de candidato está completo e atualizado, pois isso pode
+                                influenciar as recomendações.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Minha vaga publicada não aparece.</strong>
+                        <ul>
+                            <li>Verifique o status da vaga em "Minhas Vagas" para garantir que ela está "Ativa".</li>
+                            <li>Pode levar alguns minutos para que novas vagas apareçam nos resultados de pesquisa.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="documentation-section" id="canais-de-suporte">
+                <h2><i class="bi bi-life-preserver"></i> 6. Canais de Suporte</h2>
+                <p>Se você precisar de ajuda adicional ou tiver alguma dúvida que não foi respondida nesta documentação,
+                    por favor, entre em contato conosco:</p>
+
+                <ul>
+                    <li><strong>E-mail de Suporte:</strong> <a
+                            href="mailto:suporte@empregai.com.br">suporte@empregai.com.br</a> (exemplo)</li>
+                    {{!-- <li><strong>Formulário de Contato:</strong> Visite a seção "Contato" em nosso site para enviar uma
+                        mensagem diretamente.</li> --}}
+                </ul>
+                <p>Estamos aqui para ajudar você a ter a melhor experiência possível com o Empregai!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const sections = document.querySelectorAll('.documentation-section');
+        const navLinks = document.querySelectorAll('.sidebar-nav ul li a');
+
+        function activateNavLink() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', activateNavLink);
+        activateNavLink();
+    });
+</script>
