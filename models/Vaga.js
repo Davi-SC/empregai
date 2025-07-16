@@ -7,12 +7,12 @@ const Vaga = banco.sequelize.define("vagas", {
     primaryKey: true,
     autoIncrement: true,
   },
-  titulo: banco.Sequelize.STRING(150),
-  descricao: banco.Sequelize.TEXT,
-  requisitos: banco.Sequelize.TEXT,
-  tipo_contrato: banco.Sequelize.STRING(50),
-  modalidade: banco.Sequelize.ENUM("remoto", "presencial", "híbrido"),
-  localizacao: banco.Sequelize.STRING(100),
+  titulo: { type: banco.Sequelize.STRING(150), allowNull: false },
+  descricao: { type: banco.Sequelize.TEXT, allowNull: false },
+  requisitos: { type: banco.Sequelize.TEXT },
+  tipo_contrato: { type: banco.Sequelize.ENUM("CLT", "PJ", "Estágio"), allowNull: false },
+  modalidade: { type: banco.Sequelize.ENUM("remoto", "presencial", "híbrido") },
+  localizacao: { type: banco.Sequelize.STRING(100) },
 });
 
 Vaga.belongsTo(Empresa, {
@@ -22,5 +22,5 @@ Vaga.belongsTo(Empresa, {
   as: 'empresa',
 })
 
- //Vaga.sync();
+ Vaga.sync();
 export default Vaga;
