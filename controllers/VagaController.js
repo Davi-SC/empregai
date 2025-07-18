@@ -34,17 +34,23 @@ class VagaController {
   }
 
   criar = async (req, res) => {
-    try {
-      const dados = req.body;
-      dados.empresaId = req.user.id;
-      await Vaga.create(dados);
-      res.redirect("/empresa/vagas");
-    } catch (error) {
-      console.error("Erro ao criar vaga:", error);
-      res.status(500).send("Erro ao criar vaga.");
-    }
-  };
+  try {
+    const empresa = await Empresa.findOne({ where: { usuario_id: req.user.id } });
 
+    if (!empresa) return res.status(400).send("Perfil da empresa não encontrado.");
+
+    const dados = req.body;
+    dados.empresa_id = empresa.id;
+
+    await Vaga.create(dados);
+
+    res.status(200).send("Vaga criada com sucesso.");
+  } catch (error) {
+    console.error("Erro ao criar vaga:", error);
+    res.status(500).send("Erro ao criar vaga.");
+  }
+};
+ 
   verFeed = async (req, res) => {
     const vagas = await Vaga.findAll();
     res.render("candidato/feed-vagas", { vagas });

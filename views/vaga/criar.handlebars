@@ -1,0 +1,69 @@
+
+<h2>Criar Nova Vaga</h2>
+
+<form id="formNovaVaga">
+  <div class="mb-3">
+    <label for="titulo">Título</label>
+    <input type="text" class="form-control" id="titulo" name="titulo" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="descricao">Descrição</label>
+    <textarea class="form-control" id="descricao" name="descricao" rows="4"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="requisitos">Pré-requisitos</label>
+    <textarea class="form-control" id="requisitos" name="requisitos" rows="3"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="tipo_contrato">Tipo de Contrato</label>
+    <select class="form-select" id="tipo_contrato" name="tipo_contrato" required>
+      <option value="">Selecione</option>
+      <option value="CLT">CLT</option>
+      <option value="PJ">PJ</option>
+      <option value="Estágio">Estágio</option>
+      <option value="Freelancer">Freelancer</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-success">Salvar</button>
+  <a href="/empresa/feed" class="btn btn-secondary">Cancelar</a>
+</form>
+
+<div id="mensagem"></div>
+
+<script>
+document.getElementById("formNovaVaga").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const dados = {
+    titulo: document.getElementById("titulo").value,
+    descricao: document.getElementById("descricao").value,
+    requisitos: document.getElementById("requisitos").value,
+    tipo_contrato: document.getElementById("tipo_contrato").value
+  };
+
+  try {
+    const res = await fetch("/vaga/criar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "same-origin", 
+      body: JSON.stringify(dados)
+    });
+
+    const texto = document.getElementById("mensagem");
+    if (res.ok) {
+      texto.innerHTML = '<div class="alert alert-success">Vaga criada com sucesso!</div>';
+      this.reset();
+    } else {
+      const erro = await res.text();
+      texto.innerHTML = `<div class="alert alert-danger">${erro}</div>`;
+    }
+  } catch (err) {
+    document.getElementById("mensagem").innerHTML = '<div class="alert alert-danger">Erro ao enviar dados.</div>';
+  }
+});
+</script>

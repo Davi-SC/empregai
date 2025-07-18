@@ -1,3 +1,4 @@
+// models/Empresa.js
 import banco from "../config/banco.js";
 import Usuario from "./Usuario.js";
 
@@ -7,16 +8,16 @@ const Empresa = banco.sequelize.define("empresas", {
     primaryKey: true,
     autoIncrement: true,
   },
-  nome_fantasia: banco.Sequelize.STRING(150),
-  cnpj: {
-    type: banco.Sequelize.STRING(20),
-    allowNull: false, // Não permite nulo
-    validate: {
-      notEmpty: true, // Não permite string vazia
-    }
+  nome_fantasia: {
+    type: banco.Sequelize.STRING(100),
+    allowNull: false,
   },
-  setor: banco.Sequelize.STRING(100),
   localizacao: banco.Sequelize.STRING(100),
+  setor: banco.Sequelize.STRING(100),
+  usuario_id: {
+    type: banco.Sequelize.INTEGER,
+    allowNull: false,
+  },
 });
 
 Empresa.belongsTo(Usuario, {
@@ -24,7 +25,6 @@ Empresa.belongsTo(Usuario, {
   constraint: true,
   onDelete: 'CASCADE',
   as: 'usuario',
-})
+});
 
-//Empresa.sync();
 export default Empresa;

@@ -70,7 +70,9 @@ class UsuarioController {
         });
       } else if (usuario.tipo === "empresa") {
         await Empresa.create({
-          usuario_id: usuario.id
+          usuario_id: usuario.id,
+          nome_fantasia: req.body.nome_fantasia,
+          cnpj: req.body.cnpj
         });
       }
 

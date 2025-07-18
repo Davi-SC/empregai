@@ -9,5 +9,11 @@ router.post("/criar", apenasEmpresa, EmpresaController.criarPerfil);
 router.get("/perfil", apenasEmpresa, EmpresaController.verPerfil);
 router.get("/editar", apenasEmpresa, EmpresaController.editar);
 router.post("/editar", apenasEmpresa, EmpresaController.salvar);
+router.get("/nova-vaga", apenasEmpresa, (req, res) => {
+  res.render("vaga/criar", {
+    header: "header-home"
+  });
+});
+
 
 export default router;

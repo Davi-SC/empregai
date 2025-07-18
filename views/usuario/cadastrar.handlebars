@@ -39,11 +39,12 @@
       <input type="hidden" id="tipo" name="tipo" value="empresa">
       <div class="mb-3">
         <label for="nomeEmpresa" class="form-label">Nome Empresa</label>
-        <input type="text" class="form-control" id="nomeEmpresa" name="nome">
+        <input type="text" class="form-control" id="nomeEmpresa" name="nome_fantasia">
+        <input type="hidden" name="nome" value="" id="nomeHidden">
       </div>
       <div class="mb-3">
         <label for="cnpjEmpresa" class="form-label">CNPJ</label>
-        <input type="text" class="form-control" id="cnpjEmpresa" name="cnpj" required>
+        <input type="text" class="form-control" id="cnpjEmpresa" name="cnpj">
       </div>
       <div class="mb-3">
         <label for="emailEmpresa" class="form-label">E-mail</label>
@@ -96,4 +97,8 @@
     const input = document.getElementById(inputId);
     input.type = input.type === 'password' ? 'text' : 'password';
   }
+  
+  document.getElementById('nomeEmpresa').addEventListener('input', function() {
+    document.getElementById('nomeHidden').value = this.value;
+  });
 </script>
