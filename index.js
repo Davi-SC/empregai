@@ -42,15 +42,15 @@ app.engine(
   handlebars.engine({
     defaultLayout: "principal",
     handlebars: allowInsecurePrototypeAccess(Handlebars),
-    partialsDir: 'views/partials',
+    partialsDir: "views/partials",
     helpers: {
       lt: function (a, b) {
         return a < b;
       },
       eq: function (a, b) {
         return a === b;
-      }
-    }
+      },
+    },
   })
 );
 app.set("view engine", "handlebars");
@@ -69,7 +69,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.render("home/home", {
     candidato: req.user?.tipo === "candidato",
-    header: 'header-home'
+    header: "header-home",
   });
 });
 
@@ -87,6 +87,12 @@ app.use("/vaga", vaga);
 
 import candidatura from "./routes/candidatura.js";
 app.use("/candidatura", candidatura);
+
+app.get("/duvidas", (req, res) => {
+  res.render("home/duvidas", {
+    header: "header-home",
+  });
+});
 
 ////////////////////
 // INICIAR SERVIDOR
