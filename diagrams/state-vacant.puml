@@ -1,0 +1,93 @@
+@startuml Diagrama de Estados - Vaga
+
+title Diagrama de Estados da Entidade Vaga
+
+[*] --> Criada : Empresa publica vaga
+
+state "Vaga Criada" as Criada {
+  Criada : titulo definido
+  Criada : descricao definida
+  Criada : requisitos definidos
+  Criada : tipo_contrato definido
+  Criada : modalidade (remoto/presencial/híbrido)
+  Criada : localizacao definida
+  Criada : empresa_id associado
+}
+
+note right of Criada
+  Vaga criada pela empresa
+  através do POST /vaga/criar
+  Dados obrigatórios
+  devem estar presentes
+end note
+
+Criada --> Publicada : Vaga disponível\nno sistema
+
+state "Vaga Publicada" as Publicada {
+  Publicada : Visível no feed de candidatos
+  Publicada : Pesquisável por filtros
+  Publicada : Sem candidaturas ainda
+}
+
+note right of Publicada
+  Aparece no feed com:
+  - Busca por título/descrição
+  - Filtro por modalidade
+  - Filtro por tipo_contrato
+end note
+
+Publicada --> Visualizada : Candidatos\nvisualizam detalhes
+
+state "Vaga Visualizada" as Visualizada {
+  Visualizada : Detalhes completos exibidos
+  Visualizada : Requisitos em array
+  Visualizada : Info da empresa incluída
+}
+
+Visualizada --> ComCandidaturas : Candidato se\ncandidatou
+
+state "Vaga com Candidaturas" as ComCandidaturas {
+  ComCandidaturas : Possui 1+ candidaturas
+  ComCandidaturas : data_candidatura registrada
+  ComCandidaturas : candidato_id vinculado
+}
+
+note bottom of ComCandidaturas
+  Múltiplas candidaturas podem
+  ser associadas à mesma vaga
+  Relacionamento N:N através
+  da tabela Candidatura
+end note
+
+ComCandidaturas --> ComCandidaturas : Mais candidatos\nse candidatam
+
+Publicada --> Publicada : Listada no feed\nde candidatos
+
+ComCandidaturas --> Publicada : Ainda visível\npara novos candidatos
+
+Criada --> EmEdicao : Empresa edita vaga
+
+state "Vaga em Edição" as EmEdicao {
+  EmEdicao : Dados sendo atualizados
+  EmEdicao : POST /vaga/editar/:id
+}
+
+EmEdicao --> Publicada : Edição salva\n(sem candidaturas)
+
+EmEdicao --> ComCandidaturas : Edição salva\n(com candidaturas)
+
+note left of EmEdicao
+  Vaga pode ser editada
+  a qualquer momento pela
+  empresa que a criou
+end note
+
+' Estados finais possíveis
+Criada --> [*] : Vaga deletada
+Publicada --> [*] : Vaga deletada
+Visualizada --> [*] : Vaga deletada
+ComCandidaturas --> [*] : Vaga deletada\n(CASCADE - candidaturas também)
+EmEdicao --> [*] : Empresa deletada\n(CASCADE)
+
+
+@enduml

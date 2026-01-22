@@ -1,0 +1,158 @@
+@startuml Diagrama de Casos de Uso - Sistema Empregai
+
+title Casos de Uso do Sistema Empregai
+
+' Definição dos atores
+:Candidato: as Candidato
+:Empresa: as Empresa
+:Visitante: as Visitante
+
+' Agrupamento dos casos de uso
+rectangle "Sistema Empregai" {
+  
+  ' Casos de uso de Autenticação (comum)
+  package "Autenticação" {
+    usecase "Realizar Login" as UC_Login
+    usecase "Realizar Logout" as UC_Logout
+    usecase "Cadastrar-se no Sistema" as UC_Cadastro
+  }
+  
+  ' Casos de uso do Candidato
+  package "Gestão de Perfil - Candidato" {
+    usecase "Criar Perfil de Candidato" as UC_CriarPerfilCandidato
+    usecase "Editar Perfil de Candidato" as UC_EditarPerfilCandidato
+    usecase "Visualizar Perfil de Candidato" as UC_VisualizarPerfilCandidato
+  }
+  
+  package "Busca e Candidaturas" {
+    usecase "Visualizar Feed de Vagas" as UC_FeedVagas
+    usecase "Filtrar Vagas por Critérios" as UC_FiltrarVagas
+    usecase "Visualizar Detalhes da Vaga" as UC_DetalhesVaga
+    usecase "Candidatar-se a Vaga" as UC_Candidatar
+    usecase "Visualizar Minhas Candidaturas" as UC_MinhasCandidaturas
+  }
+  
+  ' Casos de uso da Empresa
+  package "Gestão de Perfil - Empresa" {
+    usecase "Criar Perfil de Empresa" as UC_CriarPerfilEmpresa
+    usecase "Editar Perfil de Empresa" as UC_EditarPerfilEmpresa
+    usecase "Visualizar Perfil de Empresa" as UC_VisualizarPerfilEmpresa
+  }
+  
+  package "Gestão de Vagas" {
+    usecase "Criar Vaga de Emprego" as UC_CriarVaga
+    usecase "Editar Vaga de Emprego" as UC_EditarVaga
+    usecase "Listar Todas as Vagas" as UC_ListarVagas
+  }
+  
+  package "Busca de Candidatos" {
+    usecase "Visualizar Feed de Candidatos" as UC_FeedCandidatos
+    usecase "Filtrar Candidatos por Critérios" as UC_FiltrarCandidatos
+    usecase "Visualizar Perfil de Candidato" as UC_VerPerfilCandidato
+  }
+  
+  ' Casos de uso gerais
+  package "Informações Gerais" {
+    usecase "Acessar Página Inicial" as UC_Home
+    usecase "Acessar Página de Dúvidas" as UC_Duvidas
+  }
+}
+
+' Relacionamentos - Visitante
+Visitante --> UC_Home
+Visitante --> UC_Duvidas
+Visitante --> UC_Cadastro
+Visitante --> UC_Login
+
+' Relacionamentos - Candidato (herda de Visitante)
+Candidato --|> Visitante : <<extends>>
+
+Candidato --> UC_Logout
+Candidato --> UC_CriarPerfilCandidato
+Candidato --> UC_EditarPerfilCandidato
+Candidato --> UC_VisualizarPerfilCandidato
+Candidato --> UC_FeedVagas
+Candidato --> UC_FiltrarVagas
+Candidato --> UC_DetalhesVaga
+Candidato --> UC_Candidatar
+Candidato --> UC_MinhasCandidaturas
+
+' Relacionamentos - Empresa (herda de Visitante)
+Empresa --|> Visitante : <<extends>>
+
+Empresa --> UC_Logout
+Empresa --> UC_CriarPerfilEmpresa
+Empresa --> UC_EditarPerfilEmpresa
+Empresa --> UC_VisualizarPerfilEmpresa
+Empresa --> UC_CriarVaga
+Empresa --> UC_EditarVaga
+Empresa --> UC_ListarVagas
+Empresa --> UC_FeedCandidatos
+Empresa --> UC_FiltrarCandidatos
+Empresa --> UC_VerPerfilCandidato
+
+' Relacionamentos entre casos de uso (Include e Extend)
+UC_FeedVagas ..> UC_FiltrarVagas : <<include>>
+note right on link
+  Feed de vagas sempre
+  inclui funcionalidade
+  de filtros
+end note
+
+UC_FeedCandidatos ..> UC_FiltrarCandidatos : <<include>>
+note left on link
+  Feed de candidatos sempre
+  inclui funcionalidade
+  de filtros
+end note
+
+UC_Candidatar ..> UC_DetalhesVaga : <<include>>
+note right on link
+  Para se candidatar,
+  é necessário visualizar
+  os detalhes da vaga
+end note
+
+UC_CriarPerfilCandidato ..> UC_Cadastro : <<extends>>
+note bottom on link
+  Perfil de candidato é
+  criado automaticamente
+  após o cadastro
+end note
+
+UC_CriarPerfilEmpresa ..> UC_Cadastro : <<extends>>
+note bottom on link
+  Perfil de empresa é
+  criado automaticamente
+  após o cadastro
+end note
+
+' Notas adicionais
+note right of Candidato
+  **Middlewares:**
+  - logado
+  - apenasCandidato
+  
+  **Rotas protegidas:**
+  /candidato/*
+end note
+
+note left of Empresa
+  **Middlewares:**
+  - logado
+  - apenasEmpresa
+  
+  **Rotas protegidas:**
+  /empresa/*
+end note
+
+note bottom of UC_Login
+  **Autenticação:**
+  - Passport.js LocalStrategy
+  - Email + Senha (bcrypt)
+  - Serialização por ID
+  - Redirecionamento baseado
+    no tipo de usuário
+end note
+
+@enduml

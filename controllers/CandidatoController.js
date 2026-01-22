@@ -4,7 +4,22 @@ import Usuario from "../models/Usuario.js";
 import Vaga from "../models/Vaga.js";
 import Empresa from "../models/Empresa.js";
 
+/**
+ * Controller responsável por gerenciar as operações relacionadas aos candidatos.
+ * Inclui funcionalidades de criação de perfil, visualização de vagas, 
+ * visualização e edição de perfil do candidato.
+ */
 class CandidatoController {
+  /**
+   * Cria um novo perfil para um candidato.
+   * 
+   * @param {Object} req - Objeto de requisição do Express
+   * @param {Object} req.body - Dados do perfil do candidato
+   * @param {Object} req.user - Usuário autenticado
+   * @param {number} req.user.id - ID do usuário autenticado
+   * @param {Object} res - Objeto de resposta do Express
+   * @returns {Promise<void>} Redireciona para o dashboard ou retorna erro 500
+   */
   criarPerfil = async (req, res) => {
     try {
       const dados = req.body;
@@ -17,6 +32,18 @@ class CandidatoController {
     }
   };
 
+  /**
+   * Exibe o feed de vagas disponíveis com suporte a paginação e filtros.
+   * 
+   * @param {Object} req - Objeto de requisição do Express
+   * @param {Object} req.query - Parâmetros de query string
+   * @param {number} [req.query.page=1] - Número da página atual
+   * @param {string} [req.query.busca] - Termo de busca para título ou descrição da vaga
+   * @param {string} [req.query.modalidade] - Filtro de modalidade (presencial, remoto, híbrido)
+   * @param {string} [req.query.tipo_contrato] - Filtro de tipo de contrato (CLT, PJ, estágio, etc.)
+   * @param {Object} res - Objeto de resposta do Express
+   * @returns {Promise<void>} Renderiza a página de feed de vagas ou retorna erro 500
+   */
   verVagas = async (req, res) => {
     try {
       const page = parseInt(req.query.page) || 1
@@ -86,6 +113,17 @@ class CandidatoController {
     }
   };
 
+  /**
+   * Exibe o perfil de um candidato específico.
+   * 
+   * @param {Object} req - Objeto de requisição do Express
+   * @param {Object} req.params - Parâmetros da rota
+   * @param {string} req.params.id - ID do perfil do candidato a ser visualizado
+   * @param {Object} [req.user] - Usuário autenticado (opcional)
+   * @param {number} [req.user.id] - ID do usuário autenticado
+   * @param {Object} res - Objeto de resposta do Express
+   * @returns {Promise<void>} Renderiza a página de perfil ou retorna erro 404/500
+   */
   verPerfil = async (req, res) => {
     try {
       const perfilId = req.params.id
@@ -124,6 +162,15 @@ class CandidatoController {
     }
   }
 
+  /**
+   * Renderiza a página de edição do perfil do candidato autenticado.
+   * 
+   * @param {Object} req - Objeto de requisição do Express
+   * @param {Object} req.user - Usuário autenticado
+   * @param {number} req.user.id - ID do usuário autenticado
+   * @param {Object} res - Objeto de resposta do Express
+   * @returns {Promise<void>} Renderiza a página de edição do perfil
+   */
   editar = async (req, res) => {
 
     const usuario = await Usuario.findByPk(req.user.id)
@@ -137,6 +184,23 @@ class CandidatoController {
     res.render("candidato/editar", {usuario: usuario, candidato: candidato})
   };
 
+  /**
+   * Salva as alterações do perfil do candidato e dados do usuário.
+   * 
+   * @param {Object} req - Objeto de requisição do Express
+   * @param {Object} req.body - Dados enviados no formulário
+   * @param {string} req.body.nome - Nome do usuário
+   * @param {string} req.body.email - Email do usuário
+   * @param {string} req.body.area_atuacao - Área de atuação do candidato
+   * @param {string} req.body.experiencia - Experiência profissional do candidato
+   * @param {string} req.body.habilidades - Habilidades do candidato (separadas por vírgula)
+   * @param {string} req.body.localizacao - Localização do candidato
+   * @param {number} req.body.id - ID do perfil do candidato
+   * @param {Object} req.user - Usuário autenticado
+   * @param {number} req.user.id - ID do usuário autenticado
+   * @param {Object} res - Objeto de resposta do Express
+   * @returns {Promise<void>} Redireciona para a home com mensagem de sucesso
+   */
   salvar = async (req, res) => {
 
     Usuario.update({

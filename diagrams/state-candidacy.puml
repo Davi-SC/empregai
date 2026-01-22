@@ -1,0 +1,87 @@
+@startuml Diagrama de Estados - Candidatura
+
+title Diagrama de Estados da Entidade Candidatura
+
+[*] --> Cadastrada : Candidato se candidata\na uma vaga
+
+state "Candidatura Cadastrada" as Cadastrada {
+  Cadastrada : data_candidatura registrada
+  Cadastrada : candidato_id vinculado
+  Cadastrada : vaga_id vinculado
+  Cadastrada : Aguardando análise da empresa
+}
+
+note right of Cadastrada
+  Estado inicial quando candidato
+  clica em "Candidatar-se"
+  POST /candidatura/candidatar/:vagaId
+end note
+
+Cadastrada --> EmAnalise : Empresa inicia\nanálise
+
+state "Em Análise" as EmAnalise {
+  EmAnalise : Empresa está avaliando
+  EmAnalise : Perfil do candidato sendo revisado
+  EmAnalise : Critérios sendo verificados
+}
+
+note right of EmAnalise
+  Empresa visualiza:
+  - Perfil do candidato
+  - Habilidades
+  - Experiência
+  - Área de atuação
+end note
+
+EmAnalise --> Aprovada : Candidato\natende requisitos
+EmAnalise --> Negada : Candidato não\natende requisitos
+
+state "Candidatura Aprovada" as Aprovada {
+  Aprovada : Candidato selecionado
+  Aprovada : Processo pode avançar
+  Aprovada : Possível contato futuro
+}
+
+note bottom of Aprovada
+  Estado final positivo
+  Candidato foi aprovado
+  para a vaga
+end note
+
+state "Candidatura Negada" as Negada {
+  Negada : Candidato não selecionado
+  Negada : Perfil não compatível
+  Negada : Processo encerrado
+}
+
+note bottom of Negada
+  Estado final negativo
+  Candidato não foi aprovado
+  para esta vaga específica
+end note
+
+Cadastrada --> Cancelada : Candidato\ncancela candidatura
+
+state "Candidatura Cancelada" as Cancelada {
+  Cancelada : Candidato desistiu
+  Cancelada : Removida pelo próprio candidato
+  Cancelada : Processo encerrado
+}
+
+note left of Cancelada
+  Candidato pode cancelar
+  sua própria candidatura
+  antes da análise
+end note
+
+EmAnalise --> Cancelada : Candidato cancela\ndurante análise
+
+' Estados finais
+Aprovada --> [*] : Vaga/Candidato\ndeletado (CASCADE)
+Negada --> [*] : Vaga/Candidato\ndeletado (CASCADE)
+Cancelada --> [*] : Vaga/Candidato\ndeletado (CASCADE)
+Cadastrada --> [*] : Vaga/Candidato\ndeletado (CASCADE)
+EmAnalise --> [*] : Vaga/Candidato\ndeletado (CASCADE)
+
+
+@enduml
